@@ -1,22 +1,22 @@
 package com.task.utils.tasks;
 
 
-
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.TextFormat;
+import com.task.RsTask;
 import com.task.events.PlayerAddTaskEvent;
+import com.task.utils.DataTool;
 import com.task.utils.tasks.taskitems.SuccessItem;
 import com.task.utils.tasks.taskitems.TaskButton;
 import com.task.utils.tasks.taskitems.TaskItem;
-import com.task.RsTask;
-import com.task.utils.DataTool;
-
 
 import java.io.File;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 /**
  *   ____  ____ _____         _
@@ -415,17 +415,27 @@ public class TaskFile {
                     return null;
                 }
                 Map firstSuccess = (Map) config.get("首次完成奖励");
-                SuccessItem first =
-                        SuccessItem.toSuccessItem(firstSuccess);
+                SuccessItem first = SuccessItem.toSuccessItem(firstSuccess);
                 Map success = (Map) config.get("奖励");
-                SuccessItem second =
-                        SuccessItem.toSuccessItem(success);
+                SuccessItem second = SuccessItem.toSuccessItem(success);
                 if(type == null) {
                     return null;
                 }
-                TaskFile file = new TaskFile(taskName,type,taskItems,config.getString("任务介绍")
-                        ,config.getInt("任务难度"),config.getInt("任务分组",config.getInt("任务难度") - 1),second,first,config.getString("完成此任务前需完成"),
-                        +config.getInt("刷新时间(分钟)",0),config.getInt("完成公告类型(0/1)"),config.getString("公告内容"),TaskButton.toTaskButton((Map) config.get("自定义按键图片")));
+                TaskFile file = new TaskFile(
+                        taskName,
+                        type,
+                        taskItems,
+                        config.getString("任务介绍"),
+                        config.getInt("任务难度"),
+                        config.getInt("任务分组",
+                                config.getInt("任务难度") - 1),
+                        second,
+                        first,
+                        config.getString("完成此任务前需完成"),
+                        config.getInt("刷新时间(分钟)", 0),
+                        config.getInt("完成公告类型(0/1)"), config.getString("公告内容"),
+                        TaskButton.toTaskButton((Map) config.get("自定义按键图片"))
+                );
                 file.setShowName(config.getString("任务显示名称"));
                 file.setSuccessCount(succount);
                 file.setNotInviteTasks(new LinkedList<>(config.getStringList("完成以下任务不能领取此任务")));
@@ -433,10 +443,8 @@ public class TaskFile {
                 file.setLoadDay(config.getInt("持续时间(分钟)",1440));
                 return file;
             }
-
         }catch (Exception e){
-            e.printStackTrace();
-            Server.getInstance().getLogger().error("读取"+taskName+"任务文件出现错误 可能是因为已经不存在或者 配置出现问题");
+            Server.getInstance().getLogger().error("读取"+taskName+"任务文件出现错误 可能是因为已经不存在或者 配置出现问题", e);
             File file = new File(RsTask.getTask().getDataFolder()+"/Tasks/"+taskName+".yml");
             if(file.exists()){
                 Server.getInstance().getLogger().error("更新报错: 检测到"+taskName+"存在，已删除"+taskName+".yml文件");
