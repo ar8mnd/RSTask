@@ -3,29 +3,27 @@ package com.task;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-
 import cn.nukkit.level.Level;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.TextFormat;
 import com.task.commands.*;
+import com.task.form.ListenerMenu;
 import com.task.items.ItemLib;
+import com.task.utils.DataTool;
+import com.task.utils.LoadMoney;
 import com.task.utils.task.AutoSaveFileTask;
 import com.task.utils.task.ChunkPlayerInventoryBookTask;
 import com.task.utils.task.ChunkTaskTask;
-import com.task.utils.tasks.TaskFile;
-import com.task.utils.tasks.taskitems.TaskItem;
-import com.task.utils.DataTool;
-import com.task.utils.LoadMoney;
 import com.task.utils.task.ListerEvents;
-import com.task.utils.tasks.taskitems.ItemClass;
 import com.task.utils.tasks.PlayerFile;
-import com.task.form.ListenerMenu;
+import com.task.utils.tasks.TaskFile;
+import com.task.utils.tasks.taskitems.ItemClass;
+import com.task.utils.tasks.taskitems.TaskItem;
 import org.jline.utils.Log;
 import updata.AutoData;
 
 import java.io.File;
-
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -121,7 +119,6 @@ public class RsTask extends PluginBase{
             RsTask.getTask().getLogger().info("本插件为免费开源插件");
             RsTask.getTask().getLogger().info("GitHub: https://github.com/SmallasWater/RSTask");
         },20);
-
     }
 
 

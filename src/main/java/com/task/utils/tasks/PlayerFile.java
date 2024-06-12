@@ -9,14 +9,14 @@ import cn.nukkit.level.Level;
 import cn.nukkit.level.Sound;
 import cn.nukkit.utils.Config;
 import com.task.RsTask;
-import com.task.items.ItemLib;
-import com.task.utils.ItemIDSunName;
-import com.task.utils.tasks.taskitems.*;
-import com.task.utils.DataTool;
 import com.task.events.PlayerCanInviteTaskEvent;
 import com.task.events.PlayerTaskCloseEvent;
 import com.task.events.SuccessTaskEvent;
 import com.task.events.UseTaskEvent;
+import com.task.items.ItemLib;
+import com.task.utils.DataTool;
+import com.task.utils.ItemIDSunName;
+import com.task.utils.tasks.taskitems.*;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -275,12 +275,15 @@ public class PlayerFile {
         return false;
     }
 
-    /** 给玩家任务的分支设置任务点
+    /**
+     * 给玩家任务的分支设置任务点
+     *
      * @param taskName 任务名称
      * @param valueName 进度名称
      * @param value 进度大小
      *
-     * @return 是否设置成功*/
+     * @return 是否设置成功
+     */
     public boolean setTaskValue(String taskName,String valueName,int value){
         PlayerTask task = getTaskByName(taskName);
         if(task != null){
@@ -304,7 +307,8 @@ public class PlayerFile {
      * @param task 玩家任务
      * @param item 任务进度类
      *
-     * @return 是否存在*/
+     * @return 是否存在
+     */
     public boolean canInArrayTaskItem(PlayerTask task, TaskItem item){
         TaskItem[] items = task.getTaskClass().getValue();
         for(TaskItem item1:items){
@@ -460,7 +464,12 @@ public class PlayerFile {
     }
 
 
-    /** 任务是否进行中 */
+    /**
+     * 判断任务是否进行中
+     *
+     * @param taskName 任务名称
+     * @return 任务是否进行中
+     */
     public boolean isRunning(String taskName) {
         PlayerTask task = this.getTaskByName(taskName);
         return !isSuccess(taskName) && task != null && task.getTaskClass().getOpen();

@@ -61,6 +61,7 @@ public class ItemClass implements InstanceItem {
         }
         return d;
     }
+
     private static byte charToByte(char c) {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
