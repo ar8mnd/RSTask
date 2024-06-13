@@ -93,6 +93,7 @@ public class ItemClass implements InstanceItem {
         }
         if (defaultString.split("@").length > 1) {
             if (defaultString.split(":").length < 2) {
+                System.out.print("ABOBA");
                 return toItem(new TaskItem(null, defaultString, 0));
             } else {
                 if ("item".equals(defaultString.split("@")[1])) {
@@ -138,7 +139,6 @@ public class ItemClass implements InstanceItem {
                 }
             }
         } else {
-
             String[] items = defaultString.split(":");
             if (items.length < 3) {
                 return new ItemClass(
