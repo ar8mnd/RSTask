@@ -51,12 +51,12 @@ public class SetAllTaskValueSubCommand extends BaseSubCommand {
                     }
                 }
                 if (args.length > 4 && "true".equalsIgnoreCase(args[4])) {
-                    sender.sendMessage("§6[§7任务系统§6] §7" + "设置玩家: §a" + p.getName() + "§5" + v.getValue() + "§2点§r" + "§2的§2" + v.getLoad() + "进度§a 成功:§e" + sizeSuccess + " §a个 §c失败:§e " + sizeError + " §c个");
+                    sender.sendMessage("§6[§7Task System§6] §7" + "Set player: §a" + p.getName() + "§5" + v.getValue() + "§2 points§r" + "§2 of§2" + v.getLoad() + " progress§a Success:§e" + sizeSuccess + " §a items §cFailure:§e " + sizeError + " §c items");
                 }
             }
         } else {
             if (args.length > 5 && "true".equalsIgnoreCase(args[5])) {
-                sender.sendMessage("玩家" + player + "不在线");
+                sender.sendMessage("Player " + player + " is not online");
             }
         }
         return true;

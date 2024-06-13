@@ -43,18 +43,19 @@ public class OpenListSubCommand extends OpenTaskSubCommand {
                         CreateMenu.sendTaskList(player, RsTask.getClickStar.get(player));
                     } else {
 
-                        sender.sendMessage(TextFormat.RED + "不存在分组: " + group);
+                        sender.sendMessage(TextFormat.RED + "Group does not exist: " + group);
                         return true;
                     }
 
                 } catch (Exception e) {
-                    sender.sendMessage(TextFormat.RED + "请输入正确的分组 （整数）");
+                    sender.sendMessage(TextFormat.RED + "Please enter a valid group (integer)");
                     return true;
                 }
 
-                sender.sendMessage(TextFormat.GREEN + "成功让玩家 " + player.getName() + "触发点击分组 " + list);
+                sender.sendMessage(TextFormat.GREEN + "Successfully triggered click group " + list + " for player " + player.getName());
             } else {
-                sender.sendMessage(TextFormat.RED + "玩家 " + playerName + "不在线");
+                sender.sendMessage(TextFormat.RED + "Player " + playerName + " is not online");
+
             }
         }
         return true;

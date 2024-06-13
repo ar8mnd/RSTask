@@ -1,7 +1,7 @@
 #
 #  ____  ____ _____         _
-# |  _ \/ ___|_   _|_ _ ___| | __
-# | |_) \___ \ | |/ _` / __| |/ /
+# |  _ \/ ___|_   _|_ _ ___| |
+# | |_) \___ \ | |/ _` / | |/ /
 # |  _ < ___) || | (_| \__ \   <
 # |_| \_\____/ |_|\__,_|___/_|\_\
 #
@@ -17,20 +17,20 @@ softdepend:
 
 permissions:
  RSTask.command.rank:
-  description: §d任务积分排行榜
+  description: §dTask Points Leaderboard
   default: true
  RSTask.command.sh:
-  description: §d保存手上的物品到ItemTag
+  description: §dSave the item in hand to ItemTag
   default: op
  RSTask.command.ic:
-  description: §c创建任务
+  description: §cCreate Task
   default: op
  RSTask.command.del-task:
-  description: §e删除任务
+  description: §eDelete Task
   default: op
  RSTask.command.reload-task:
-  description: §c重新同步任务文件
+  description: §cResynchronize Task Files
   default: op
  RSTask.command.reward:
-  description: §e悬赏任务
+  description: §eBounty Task
   default: true

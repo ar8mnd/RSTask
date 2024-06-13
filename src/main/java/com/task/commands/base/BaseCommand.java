@@ -52,7 +52,7 @@ abstract public class BaseCommand extends Command {
                     } else if (sender instanceof Player) {
                         return true;
                     } else {
-                        sender.sendMessage("请不要在控制台执行此指令");
+                        sender.sendMessage("Do not execute this command on the console");
                     }
                 } else {
                     sendHelp(sender);

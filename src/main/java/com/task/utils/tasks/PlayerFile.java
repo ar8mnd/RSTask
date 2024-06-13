@@ -338,7 +338,7 @@ public class PlayerFile {
         } else {
             addTask(task);
             if (!issetTask(task)) {
-                Server.getInstance().getLogger().warning("读取玩家任务出现异常");
+                Server.getInstance().getLogger().warning("Abnormal reading of player quests");
             }
         }
     }
@@ -847,7 +847,7 @@ public class PlayerFile {
                             if (((ItemLib) itemClass).hasReduceItem(player)) {
                                 ((ItemLib) itemClass).reduceItem(player);
                             } else {
-                                player.sendMessage(RsTask.getTask().getLag("error-task", "§d§l[任务系统]§c出现异常!!!"));
+                                player.sendMessage(RsTask.getTask().getLag("error-task", "§d§l[Quest System]§c Anomaly!!!!"));
                                 return;
                             }
 
@@ -856,7 +856,7 @@ public class PlayerFile {
                             if (DataTool.getCount(player, itemClass) >= itemClass.getItem().getCount()) {
                                 player.getInventory().removeItem(itemClass.getItem());
                             } else {
-                                player.sendMessage(RsTask.getTask().getLag("error-task", "§d§l[任务系统]§c出现异常!!!"));
+                                player.sendMessage(RsTask.getTask().getLag("error-task", "§d§l[Quest System]§c Anomaly!!!!"));
                                 return;
                             }
                         }

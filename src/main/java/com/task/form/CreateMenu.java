@@ -233,14 +233,17 @@ public class CreateMenu {
      */
     public static StringBuilder getTitles(Player player, TaskFile file) {
         StringBuilder builder = new StringBuilder();
-        builder.append(RsTask.getTask().getLag("tast-title")).append("§r ").append(file.getName()).append("\n");
+        builder.append(RsTask.getTask().getLag("task-title")).append("§r ").append(file.getName()).append("\n");
         builder.append(RsTask.getTask().getLag("task-difficulty")).append("§r ").append(DataTool.getStar(file.getStar())).append("\n\n");
         builder.append(RsTask.getTask().getLag("task-introduce")).append("§r \n").append(file.getTaskMessage()).append("\n\n");
         PlayerFile file1 = PlayerFile.getPlayerFile(player.getName());
         int timeOut = file1.getTimeOutDay(file.getTaskName());
         int time = file.getLoadDay();
         DayTime dayTime1 = DataTool.getTimeByDay(timeOut);
-        builder.append(RsTask.getTask().getLag("time-out", "§e§l到期时间:")).append("§r ").append(time <= 0 ? "§2无限制" : dayTime1.getTime() > 0 ? "§a" + dayTime1.getTime() + DayTime.STRINGS[dayTime1.getType()] + " §c后失效" : "§c已失效").append("\n\n");
+        builder.append(RsTask.getTask().getLag("time-out", "§e§lExpiration Time:")).append("§r ")
+                .append(time <= 0 ? "§2Unlimited" : dayTime1.getTime() > 0 ? "§a" + dayTime1.getTime() + DayTime.STRINGS[dayTime1.getType()] + " §cExpires After" : "§cExpired")
+                .append("\n\n");
+
         return builder;
     }
 
@@ -250,7 +253,7 @@ public class CreateMenu {
      * @param player 玩家
      */
     public static void sendRankMenu(Player player) {
-        FormWindowSimple simple = new FormWindowSimple("任务系统--排行榜", "");
+        FormWindowSimple simple = new FormWindowSimple("Mission System - Leaderboard", "");
         StringBuilder builder = new StringBuilder();
         LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
         PlayerFile file;
@@ -270,7 +273,7 @@ public class CreateMenu {
             }
             i++;
         }
-        simple.setContent("任务积分排行榜: \n§b当前您的排名: §7No.§a" + in + "\n\n-------------------\n" + builder.toString());
+        simple.setContent("Mission Points Ranking. \n" + "§bCurrently your ranking: §7No.§a" + in + "\n\n-------------------\n" + builder.toString());
         int lead = 0xcc1006;
         player.showFormWindow(simple, lead);
 
@@ -332,11 +335,11 @@ public class CreateMenu {
             simple.addButton(getCancelButton());
         }
 
-        ElementButton giveUp = new ElementButton(RsTask.getTask().getLag("giveUpTask", "§c放弃任务"));
+        ElementButton giveUp = new ElementButton(RsTask.getTask().getLag("giveUpTask", "§cAbandonment of mandate"));
         giveUp.addImage(new ElementButtonImageData("path", "textures/ui/book_trash_default"));
         simple.addButton(giveUp);
         if (RsTask.canBack()) {
-            ElementButton button2 = new ElementButton(RsTask.getTask().getLag("back", "返回"));
+            ElementButton button2 = new ElementButton(RsTask.getTask().getLag("back", "come (or go) back"));
             ElementButtonImageData imageData2 = new ElementButtonImageData("path", "textures/ui/refresh_light");
             button2.addImage(imageData2);
             simple.addButton(button2);
@@ -351,27 +354,28 @@ public class CreateMenu {
      * @param player 玩家
      */
     public static void sendCreateTaskMenu(Player player) {
-        FormWindowCustom custom = new FormWindowCustom("创建任务");
-        custom.addElement(new ElementLabel("任务创建UI 请根据提示填写(此UI仅提供简易的任务创建，若进一步更改请修改配置)")); //0
-        custom.addElement(new ElementInput("请输入任务名称", "例如: 任务①--破坏收集橡木", "任务①--破坏收集橡木")); //1
+        FormWindowCustom custom = new FormWindowCustom("Create Task");
+        custom.addElement(new ElementLabel("Task Creation UI. Please fill in according to the prompts. (This UI only provides simple task creation. For further changes, please modify the configuration)")); //0
+        custom.addElement(new ElementInput("Please enter the task name", "For example: Task①--Destroy and Collect Oak", "Task①--Destroy and Collect Oak")); //1
         LinkedList<String> list = new LinkedList<>();
         for (TaskFile.TaskType type : TaskFile.TaskType.values()) {
             list.add(type.getTaskType());
         }
-        custom.addElement(new ElementDropdown("请选择任务类型", list, 3)); //2
+        custom.addElement(new ElementDropdown("Please select the task type", list, 3)); //2
         LinkedList<String> list1 = new LinkedList<>();
-        Map map = ((Map) task.getConfig().get("自定义图片路径"));
+        Map map = ((Map) task.getConfig().get("Custom Image Path"));
         Map map1;
         for (int i = 0; i < map.size(); i++) {
             map1 = (Map) map.get(i + "");
-            list1.add(map1.get("名称").toString());
+            list1.add(map1.get("Name").toString());
         }
-        custom.addElement(new ElementDropdown("请选择任务分组", list1)); //3
-        custom.addElement(new ElementInput("请输入任务难度(整数)", "例如: 1", "1")); //4
-        custom.addElement(new ElementInput("请输入任务介绍", "例如: 收集10个橡木", "收集10个橡木")); //5
-        custom.addElement(new ElementInput("请输入任务完成条件(&区分多个元素) @item为物品(17:0:10@item) @lib 为物品词典(木块:10@lib) @tag为nbt物品(id:10@tag) (自定义任务请输 内容:数量)", "例如: 17:0:10@item 或 id:10@tag(收集任务)", "17:0:10@item")); //6
-        custom.addElement(new ElementInput("请输入任务奖励(&区分多个元素)@item 为奖励物品 @tag奖励TagItem.json里的物品 @lib 为奖励物品词典内物品(仅第一个)@money奖励金钱 @Cmd奖励指令(%p代表玩家)", "例如: 366:0:1@item 或 id:1@tag", "366:0:1@item&100@money")); //7
+        custom.addElement(new ElementDropdown("Please select the task group", list1)); //3
+        custom.addElement(new ElementInput("Please enter the task difficulty (integer)", "For example: 1", "1")); //4
+        custom.addElement(new ElementInput("Please enter the task description", "For example: Collect 10 Oak Wood", "Collect 10 Oak Wood")); //5
+        custom.addElement(new ElementInput("Please enter the task completion conditions (& separates multiple elements) @item for items (17:0:10@item) @lib for item dictionary (wood:10@lib) @tag for NBT items (id:10@tag) (For custom tasks, please enter content: quantity)", "For example: 17:0:10@item or id:10@tag (collection task)", "17:0:10@item")); //6
+        custom.addElement(new ElementInput("Please enter the task rewards (& separates multiple elements) @item for reward items @tag for reward items in TagItem.json @lib for reward items in the item dictionary (only the first one) @money for reward money @Cmd for reward commands (%p represents player)", "For example: 366:0:1@item or id:1@tag", "366:0:1@item&100@money")); //7
         send(player, custom, CREATE);
+
     }
 
 
@@ -392,6 +396,4 @@ public class CreateMenu {
         button.addImage(imageData);
         return button;
     }
-
-
 }

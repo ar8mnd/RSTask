@@ -1,15 +1,16 @@
-# 物品词典
-# 可以设置多个物品
-# 支持nbt物品
-# 格式为 编号@tag
-# 示例:
-#  nbt物品:
+# Item Dictionary
+# Multiple items can be set
+# Supports NBT items
+# Format is ID@tag
+# Example:
+#  NBT items:
 #   - "1000@tag"
-石块:
+
+Stone Block:
   - "stone:1"
-土块:
+Dirt Block:
   - "dirt:3"
-木块:
+Wood Block:
   - "oak_log:17"
-金块:
+Gold Block:
   - "gold_block:41"

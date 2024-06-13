@@ -113,7 +113,7 @@ public class TaskBook {
             for (StringBuilder s : item.toList()) {
                 three.append("§r").append(s.toString()).append("\n");
             }
-            three.append(RsTask.getTask().getConfig().getString("书本注释", "\n\n\n§c(如果内容不符请重新打开或执行/cbook up)"));
+            three.append(RsTask.getTask().getConfig().getString("book-annotation", "\n\n\n§c (If the contents do not match, please reopen or execute /cbook up)"));
             writeIn((CreateMenu.getTitles(player, file) + "§r\n").replace("§e", "§r")).writeIn(two.toString().replace("§e", "§r")).writeIn(three.toString().replace("§e", "§r"));
         }
     }
@@ -169,7 +169,7 @@ public class TaskBook {
     public ItemWrittenBook toBook() {
         ItemWrittenBook bookWritten = new ItemWrittenBook();
         bookWritten.setCustomName(book.getCustomName());
-        String[] strings = new String[]{"§r§b-------------------", "§r§b|§e右键/点地 打开查看§b|", "§r§b-------------------"};
+        String[] strings = new String[]{"§r§b-------------------\",\"§r§b|§eRight click/point ground Open view§b|\",\"§r§b-------------------"};
         bookWritten.setLore(strings);
         bookWritten.writeBook(RsTask.getTask().getLag("title"), title, (texts.size() <= 50 ? texts.toArray(new String[0]) : Arrays.copyOfRange(texts.toArray(new String[0]), 0, 50)));
         CompoundTag tag = bookWritten.getNamedTag();

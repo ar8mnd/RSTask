@@ -53,12 +53,12 @@ public class AddAllTaskValueSubCommand extends BaseSubCommand {
                     }
                 }
                 if (args.length > 4 && "true".equalsIgnoreCase(args[4])) {
-                    sender.sendMessage("§6[§7任务系统§6] §2玩家 §7" + p.getName() + "§2增加 §5" + v.getLoad() + "进度 §a成功:§e" + sizeSuccess + " §a个 §c失败:§e " + sizeError + " §c个");
+                    sender.sendMessage("§6[§7Task System§6] §2Player §7" + p.getName() + "§2 added §5" + v.getLoad() + " progress §aSuccess:§e" + sizeSuccess + " §a items §cFailure:§e " + sizeError + " §c items");
                 }
             }
         } else {
             if (args.length > 4 && "true".equalsIgnoreCase(args[4])) {
-                sender.sendMessage("§6[§7任务系统§6] §c玩家" + player + "不在线");
+                sender.sendMessage("§6[§7Task System§6] §cPlayer " + player + " is offline");
             }
         }
         return true;

@@ -244,17 +244,17 @@ public class DataTool {
      * 获取难度需要积分
      */
     public static int starNeed(int star) {
-        Map map = (Map) RsTask.getTask().getConfig().get("自定义图片路径");
+        Map map = (Map) RsTask.getTask().getConfig().get("custom-image-path");
         if (map.containsKey(star + "")) {
             Map map1 = (Map) map.get(star + "");
-            return Integer.parseInt(map1.get("解锁积分").toString());
+            return Integer.parseInt(map1.get("unlock-points").toString());
         } else {
             return 0;
         }
     }
 
     public static void sendMessage(Player player, String message) {
-        switch (RsTask.getTask().getConfig().getString("底部显示类型")) {
+        switch (RsTask.getTask().getConfig().getString("bottom-display-type")) {
             case "tip":
                 player.sendTip(message);
                 break;
@@ -283,9 +283,9 @@ public class DataTool {
      * 获取分组名称
      */
     public static String getGroupName(int group) {
-        Map map = (Map) RsTask.getTask().getConfig().get("自定义图片路径");
+        Map map = (Map) RsTask.getTask().getConfig().get("custom-image-path");
         if (map.containsKey(group + "")) {
-            return RsTask.getTask().getConfig().get("自定义图片路径." + group + "." + "名称").toString();
+            return RsTask.getTask().getConfig().get("custom-image-path." + group + "." + "name").toString();
         }
         return RsTask.getTask().getLag("title");
     }
@@ -310,7 +310,7 @@ public class DataTool {
     }
 
     public static boolean existsGroup(int group) {
-        Map map = (Map) RsTask.getTask().getConfig().get("自定义图片路径");
+        Map map = (Map) RsTask.getTask().getConfig().get("custom-image-path");
         return map.containsKey(group + "");
     }
 

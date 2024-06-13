@@ -26,7 +26,7 @@ public class BookUpSubCommand extends BaseSubCommand {
 
     @Override
     public String[] getAliases() {
-        return new String[]{"更新"};
+        return new String[]{"update"};
     }
 
     @Override
@@ -39,12 +39,12 @@ public class BookUpSubCommand extends BaseSubCommand {
                         (Player) sender, TaskBook.getTaskBookByItem(((ItemWrittenBook) item)));
                 Server.getInstance().getPluginManager().callEvent(event);
                 sender.sendMessage("§a==============");
-                sender.sendMessage("§e任务书更新成功");
+                sender.sendMessage("§eMission statement updated successfully");
                 sender.sendMessage("§a==============");
                 return true;
             }
         }
-        sender.sendMessage("§c请手持任务书");
+        sender.sendMessage("§cPlease hold the mission statement in your hand");
         return true;
     }
 

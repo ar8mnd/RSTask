@@ -1,117 +1,110 @@
+#  \_\_\_\_  \_\_\_\_ \_\_\_\_\_         \_
+# |  \_ \/ \_\_\_|\_   \_|\_ \_ \_\_\_| |
+# | |\_) \\_\_\_ \ | |/ \_\` / | |/ /
+# |  \_ < \_\_\_) || | (\_| \\_\_ \   <
+# |\_| \\_\\_\_\_\_/ |\_|\\_\_,\_|\_\_\_/\_|\\_\
 #
-#  ____  ____ _____         _
-# |  _ \/ ___|_   _|_ _ ___| | __
-# | |_) \___ \ | |/ _` / __| |/ /
-# |  _ < ___) || | (_| \__ \   <
-# |_| \_\____/ |_|\__,_|___/_|\_\
-#
-# @author 若水
-# 请不要随意更改配置， 否则会出现无法加载BUG
-# 以下可以自定义按键名称与路径 按键数量为任务难度
+# author 若水
+# Please do not modify the configuration arbitrarily, otherwise, it will cause loading issues.
+# The following can customize the button name and path, the number of buttons is the task difficulty.
 
-#配置文件版本 跟插件版本不挂钩
-version: "1.5.4"
+# Configuration file version, independent of plugin version
+version: "1.5.5"
 
-#作用于任务分组
-自定义图片路径:
+# Applies to task groups
+custom-image-path:
  "0":
-  名称: "§7[§a主线§7]§b 第一章"
-  图片类型: "本地"
-  图片路径: "textures/ui/filledStarFocus"
-  解锁积分: 0
-  是否显示: true
+  name: "§7\[§aMain Line§7]§b Chapter One"
+  image-type: "Local"
+  image-path: "textures/ui/filledStarFocus"
+  unlock-points: 0
+  display: true
  "1":
-  名称: "§7[§a主线§7]§b 第二章"
-  图片类型: "本地"
-  图片路径: "textures/ui/icon_deals"
-  解锁积分: 100
-  是否显示: true
+  name: "§7\[§aMain Line§7]§b Chapter Two"
+  image-type: "Local"
+  image-path: "textures/ui/icon\_deals"
+  unlock-points: 100
+  display: true
  "2":
-  名称: "§7[§a主线§7]§b 第三章"
-  图片类型: "本地"
-  图片路径: "textures/ui/icon_best3"
-  解锁积分: 200
-  是否显示: true
+  name: "§7\[§aMain Line§7]§b Chapter Three"
+  image-type: "Local"
+  image-path: "textures/ui/icon\_best3"
+  unlock-points: 200
+  display: true
  "3":
-  名称: "§7[§a主线§7]§b 第四章"
-  图片类型: "本地"
-  图片路径: "textures/ui/icon_armor"
-  解锁积分: 300
-  是否显示: true
+  name: "§7\[§aMain Line§7]§b Chapter Four"
+  image-type: "Local"
+  image-path: "textures/ui/icon\_armor"
+  unlock-points: 300
+  display: true
  "4":
-  名称: "§7[§a主线§7]§b 第五章"
-  图片类型: "本地"
-  图片路径: "textures/ui/icon_balloon"
-  解锁积分: 400
-  是否显示: true
+  name: "§7\[§aMain Line§7]§b Chapter Five"
+  image-type: "Local"
+  image-path: "textures/ui/icon\_balloon"
+  unlock-points: 400
+  display: true
  "5":
-  名称: "§7[§c支线§7]§b 支线任务"
-  图片类型: "本地"
-  图片路径: "textures/ui/icon_blackfriday"
-  解锁积分: 0
-  是否显示: true
+  name: "§7\[§cSide Line§7]§b Side Task"
+  image-type: "Local"
+  image-path: "textures/ui/icon\_blackfriday"
+  unlock-points: 0
+  display: true
  "6":
-  名称: "§7[§b日常§7]§b 日常任务"
-  图片类型: "本地"
-  图片路径: "textures/ui/icon_book_writable"
-  解锁积分: 300
-  是否显示: true
+  name: "§7\[§bDaily§7]§b Daily Task"
+  image-type: "Local"
+  image-path: "textures/ui/icon\_book\_writable"
+  unlock-points: 300
+  display: true
 
-#是否开启积分验证 如果开启则判断任务积分是否足以解锁下一级别任务 反之不检测
-是否开启积分验证: true
+# Whether to enable points verification. If enabled, it checks if the task points are sufficient to unlock the next level task; otherwise, it does not check.
+enable-points-verification: true
 
+# Initial level points (recommended to be 0)
+initial-level-points: 0
 
+# Number of players displayed on the leaderboard (if points verification is off)
+# The leaderboard function cannot be used if points verification is off.
+leaderboard-display-player-count: 10
 
-#初始级别分数(建议为0)
-初始级别分数: 0
+gold-coin-name: "§eGold Coin§r"
 
-#排行榜显示玩家数量 （如果积分验证为关闭状态）
-# 则无法使用排行榜功能
-排行榜显示玩家数量: 10
+points-name: "§bPoints§r"
 
-金币名称: "§e金币§r"
+# Whether to use the economy function
+enable-economy: true
 
-积分名称: "§b积分§r"
+# Show the percentage at the bottom when the player is doing tasks
+show-task-progress-at-bottom: true
 
-#是否使用经济功能
-enable-Economy: true
+# If this option is turned off, the return button will be removed after clicking the task
+add-return-button-in-task-interface: true
 
-#当玩家正在进行任务时 在底部显示百分比
-是否在底部显示任务进度: true
+# If this option is turned off, players cannot execute /c
+allow-players-to-execute-c-command: true
 
-#关闭此选项后点击任务后将删除返回按键
-是否增加任务界面返回按钮: true
+# If turned off, players cannot execute /c-list
+# function to show ongoing tasks
+allow-players-to-execute-c-list-command: true
 
-#关闭此选项后玩家将无法执行/c
-是否允许玩家执行c指令: true
+# Type of bottom display for task progress, divided into popup, tip, action
+bottom-display-type: "tip"
 
-#关闭后玩家无法执行/c-list
-#功能 显示正在进行的任务
-是否允许玩家执行c-list指令: true
+# Display the quantity after each level, showing the number of each task status
+# However, this will cause the task menu to lag
+show-quantity-in-main-page: true
 
-#显示任务进度的底部类型 分为popup,tip,action
-底部显示类型: "tip"
+# Can rest assured, comes with book detection
+give-task-book-when-receiving-task: false
 
+book-annotation: "\n\n\n§c(If the content is inconsistent, please reopen or execute /cbook up)"
 
-# 显示数量后将会在每个等级后均有每个任务状态的数量显示
-# 但是这样会导致打开任务菜单卡顿
-主页面是否显示数量: true
+receive-reward-immediately-after-completing-task: false
 
-# 可以放心了，自带书本检测
-领取任务是否给予任务书: false
+# Support EconomyAPI Money, PlayerPoint
+use-economy-core: EconomyAPI
 
-书本注释: "\n\n\n§c(如果内容不符请重新打开或执行/cbook up)"
-
-完成任务是否直接领取奖励: false
-
-# 支持 EconomyAPI Money ,PlayerPoint
-使用经济核心: EconomyAPI
-
-#单位： 分钟
-#玩家任务自动保存设置
+# Unit: minutes
+# Player task auto-save settings
 auto-save-task:
  open: true
  time: 5
-
-
-

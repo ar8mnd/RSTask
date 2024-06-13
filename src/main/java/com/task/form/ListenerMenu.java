@@ -141,7 +141,7 @@ public class ListenerMenu implements Listener {
                     player.sendMessage(RsTask.getTask().getLag("unable-complete"));
                 }
             } else {
-                Server.getInstance().getLogger().warning("无法获取玩家" + player.getName() + "点击的任务");
+                Server.getInstance().getLogger().warning("Unable to get players " + player.getName() + " Tasks clicked on");
             }
         } else if (clickedButtonId == 1) {
             CreateMenu.sendAgain(player);
@@ -158,7 +158,7 @@ public class ListenerMenu implements Listener {
     private void decodeTask(Player player, FormResponseCustom data) {
         String name = data.getInputResponse(1);
         if (TaskFile.isFileTask(name)) {
-            player.sendMessage("§c抱歉，名为" + name + "的任务已经存在");
+            player.sendMessage("§cSorry, the name " + name + " The mandate already exists");
             return;
         }
         int l = data.getDropdownResponse(2).getElementID();
@@ -175,7 +175,7 @@ public class ListenerMenu implements Listener {
         if (dStringItem.split("&").length < 2) {
             TaskItem item = TaskItem.toTaskItem(name, dStringItem.split("&")[0]);
             if (item == null) {
-                player.sendMessage("§c抱歉,任务条件出现问题，请检查后重新创建");
+                player.sendMessage("§cSorry, there is a problem with the task conditions, please check and re-create.");
                 return;
             }
             items[0] = item;
@@ -184,7 +184,7 @@ public class ListenerMenu implements Listener {
             for (String stings : dStringItem.split("&")) {
                 TaskItem item = TaskItem.toTaskItem(name, stings);
                 if (item == null) {
-                    player.sendMessage("§c抱歉,任务条件出现问题，请检查后重新创建");
+                    player.sendMessage("§cSorry, there is a problem with the task conditions, please check and re-create.");
                     return;
                 }
                 items[i++] = item;
@@ -201,7 +201,7 @@ public class ListenerMenu implements Listener {
         }
         TaskFile file1 = new TaskFile(name, type, items, message, size, group, successItem1);
         DataTool.createTask(file1);
-        player.sendMessage("§a任务 " + name + " 创建成功 请输入/task reload 同步任务");
+        player.sendMessage("§aMissions  " + name + " Created successfully Please enter /task reload to synchronize the task.");
     }
 
 }

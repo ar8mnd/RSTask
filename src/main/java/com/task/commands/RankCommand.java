@@ -11,7 +11,7 @@ import com.task.commands.base.BaseCommand;
  */
 public class RankCommand extends BaseCommand {
     public RankCommand(String name) {
-        super(name,"任务积分排行榜");
+        super(name,"Mission Points Leaderboard");
         this.setPermission("RSTask.command.rank");
         this.usageMessage = "/c-rank";
     }
@@ -26,7 +26,7 @@ public class RankCommand extends BaseCommand {
         if (commandSender.isPlayer()) {
             CreateMenu.sendRankMenu((Player) commandSender);
         }else{
-            commandSender.sendMessage("请不要用控制台执行");
+            commandSender.sendMessage("Please do not use the console to execute");
         }
         return true;
     }

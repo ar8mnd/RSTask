@@ -10,7 +10,7 @@ public class CommandClass {
     private String sendMessage;
 
     public CommandClass(String cmd) {
-        this(cmd, "奖励指令");
+        this(cmd, "Reward command");
     }
 
     public CommandClass(String cmd, String sendMessage) {

@@ -16,8 +16,8 @@ public class TaskButton {
         /**
          * 按键贴图
          */
-        Path("本地"),
-        Url("网络");
+        Path("Local"),
+        Url("Web");
         protected String name;
 
         ButtonImageType(String name) {
@@ -69,8 +69,8 @@ public class TaskButton {
 
     public LinkedHashMap<String, Object> toSaveConfig() {
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
-        linkedHashMap.put("位置", type.getName());
-        linkedHashMap.put("路径", data);
+        linkedHashMap.put("place", type.getName());
+        linkedHashMap.put("trails", data);
         return linkedHashMap;
     }
 
@@ -80,13 +80,13 @@ public class TaskButton {
         }
         ButtonImageType type;
         String data;
-        if (map.containsKey("位置")) {
-            type = "本地".equals(map.get("位置")) ? ButtonImageType.Path : ButtonImageType.Url;
+        if (map.containsKey("place")) {
+            type = "Local".equals(map.get("place")) ? ButtonImageType.Path : ButtonImageType.Url;
         } else {
             return null;
         }
-        if (map.containsKey("路径")) {
-            data = (String) map.get("路径");
+        if (map.containsKey("trails")) {
+            data = (String) map.get("trails");
         } else {
             return null;
         }

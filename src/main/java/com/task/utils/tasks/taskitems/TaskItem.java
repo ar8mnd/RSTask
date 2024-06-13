@@ -10,7 +10,6 @@ import java.util.Map;
  */
 public class TaskItem {
 
-
     private String taskName;
 
     private int endCount;

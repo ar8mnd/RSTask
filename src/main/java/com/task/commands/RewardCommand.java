@@ -15,9 +15,8 @@ public class RewardCommand extends BaseCommand {
 
     @Override
     public void sendHelp(CommandSender sender) {
-        sender.sendMessage("§6[§7任务系统§6] §e->§f /rd c §7创建悬赏任务");
-        sender.sendMessage("§6[§7任务系统§6] §e->§f /rd del <名称> §7删除指定任务");
-        sender.sendMessage("§6[§7任务系统§6] §e->§f /rd reload §7重新加载配置");
-
+        sender.sendMessage("§6[§7Task System§6] §e->§f /rd c §7Create a bounty task");
+        sender.sendMessage("§6[§7Task System§6] §e->§f /rd del <name> §7Delete the specified task");
+        sender.sendMessage("§6[§7Task System§6] §e->§f /rd reload §7Reload configuration");
     }
 }

@@ -14,7 +14,7 @@ import com.task.utils.tasks.TaskFile;
  */
 public class OpenTaskCommand extends BaseCommand {
     public OpenTaskCommand(String name) {
-        super(name, "唤醒任务界面");
+        super(name, "Wake-Up Tasks screen");
     }
 
     @Override

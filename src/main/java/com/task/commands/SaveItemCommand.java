@@ -14,7 +14,7 @@ import com.task.commands.base.BaseCommand;
 public class SaveItemCommand extends BaseCommand {
 
     public SaveItemCommand(String name) {
-        super(name, "§d保存手上的物品到ItemTag");
+        super(name, "§dSave the item on hand to ItemTag");
         this.setPermission("RSTask.command.sh");
     }
 
@@ -26,7 +26,7 @@ public class SaveItemCommand extends BaseCommand {
     @Override
     public void sendHelp(CommandSender sender) {
         sender.sendMessage("§c=======================");
-        sender.sendMessage("§e/sh <编号(可不填)> <数量(可不填)>");
+        sender.sendMessage("§e/sh <No. (optional)> <Quantity (optional)>");
         sender.sendMessage("§c=======================");
     }
 
@@ -35,21 +35,21 @@ public class SaveItemCommand extends BaseCommand {
         if(sender instanceof Player){
             Item item = ((Player) sender).getInventory().getItemInHand();
             if(item.getId().equals("minecraft:air")){
-                sender.sendMessage("§c无法添加空气");
+                sender.sendMessage("§cUnable to add air");
                 return true;
             }
             ItemClass itemClass = new ItemClass(item);
             if(args.length < 1){
                 String n = RsTask.getTask().saveTagItemsConfig(itemClass);
-                sender.sendMessage("§e成功添加"+n+"至TagItem.json");
+                sender.sendMessage("§eSuccessfully added " + n + " to TagItem.json");
             }else if(args.length < 2){
-                RsTask.getTask().saveTagItemsConfig(itemClass,args[0]);
-                sender.sendMessage("§e成功添加"+args[0]+"至TagItem.json");
+                RsTask.getTask().saveTagItemsConfig(itemClass, args[0]);
+                sender.sendMessage("§eSuccessfully added " + args[0] + " to TagItem.json");
             }else{
                 int count = Integer.parseInt(args[1]);
                 itemClass.getItem().setCount(count);
-                RsTask.getTask().saveTagItemsConfig(itemClass,args[0]);
-                sender.sendMessage("§e成功添加"+args[0]+"至 数量设置为 "+count+" TagItem.json");
+                RsTask.getTask().saveTagItemsConfig(itemClass, args[0]);
+                sender.sendMessage("§eSuccessfully added " + args[0] + " with quantity set to " + count + " to TagItem.json");
             }
         }
         return true;

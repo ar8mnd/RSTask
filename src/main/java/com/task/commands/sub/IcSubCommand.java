@@ -34,7 +34,7 @@ public class IcSubCommand extends BaseSubCommand {
             CreateMenu.sendCreateTaskMenu((Player) sender);
             return true;
         } else {
-            sender.sendMessage("控制台无法执行此指令");
+            sender.sendMessage("The console cannot execute this command");
         }
         return false;
     }

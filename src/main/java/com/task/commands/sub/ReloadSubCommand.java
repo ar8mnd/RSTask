@@ -31,7 +31,7 @@ public class ReloadSubCommand extends BaseSubCommand {
         RsTask.getTask().reloadConfig();
         RsTask.getTask().loadTask();
         RsTask.getTask().loadItem();
-        sender.sendMessage("§e任务重新读取");
+        sender.sendMessage("§eTask re-reading");
         return true;
     }
 

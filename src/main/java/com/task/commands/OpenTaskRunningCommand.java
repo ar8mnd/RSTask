@@ -15,7 +15,7 @@ import com.task.utils.tasks.TaskFile;
  */
 public class OpenTaskRunningCommand extends BaseCommand {
     public OpenTaskRunningCommand(String name) {
-        super(name, "唤醒正在进行任务的UI");
+        super(name, "Wake up the UI of a task in progress");
     }
 
     @Override

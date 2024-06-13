@@ -42,9 +42,9 @@ public class OpenTaskSubCommand extends BaseSubCommand {
                 TaskFile file = TaskFile.getTask(taskName);
                 PlayerClickTaskEvent event = new PlayerClickTaskEvent(file, player);
                 Server.getInstance().getPluginManager().callEvent(event);
-                sender.sendMessage(TextFormat.GREEN + "成功让玩家 " + player.getName() + "触发点击任务 " + taskName);
+                sender.sendMessage(TextFormat.GREEN + "Successfully made player " + player.getName() + " trigger the click task " + taskName);
             } else {
-                sender.sendMessage(TextFormat.RED + "玩家 " + playerName + "不在线");
+                sender.sendMessage(TextFormat.RED + "Player " + playerName + " is not online");
             }
         }
         return true;

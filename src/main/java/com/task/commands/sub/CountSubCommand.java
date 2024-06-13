@@ -42,12 +42,12 @@ public class CountSubCommand extends BaseSubCommand {
                     PlayerFile file = PlayerFile.getPlayerFile(player.getName());
                     file.setCount(count);
                 } catch (Exception e) {
-                    sender.sendMessage(TextFormat.RED + "请输入正确的积分数值 （整数）");
+                    sender.sendMessage(TextFormat.RED + "Please enter a valid score (integer)");
                     return true;
                 }
-                sender.sendMessage(TextFormat.GREEN + "成功设置玩家 " + player.getName() + "积分为 " + list);
+                sender.sendMessage(TextFormat.GREEN + "Successfully set player " + player.getName() + "'s score to " + list);
             } else {
-                sender.sendMessage(TextFormat.RED + "玩家 " + playerName + "不在线");
+                sender.sendMessage(TextFormat.RED + "Player " + playerName + " is not online");
             }
         }
         return true;

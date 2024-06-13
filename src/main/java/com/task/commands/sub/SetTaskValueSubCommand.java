@@ -41,11 +41,11 @@ public class SetTaskValueSubCommand extends BaseSubCommand {
                 }
                 if (API.setPlayerRunTask(p.getName(), v.getTaskName(), v.getLoad(), v.getValue())) {
                     if (args.length > 5 && "true".equalsIgnoreCase(args[5])) {
-                        sender.sendMessage("§6[§7任务系统§6] §2成功给 §7" + p.getName() + "设置 §5" + v.getValue() + "§2点§r" + v.getTaskName() + "§2的§2" + v.getLoad() + "进度");
+                        sender.sendMessage("§6[§7Task System§6] §2Successfully set §7" + p.getName() + "§2's §5" + v.getValue() + "§r points of §2" + v.getTaskName() + "§2 progress");
                     }
                 } else {
                     if (args.length > 5 && "true".equalsIgnoreCase(args[5])) {
-                        sender.sendMessage("§6[§7任务系统§6] §7" + p.getName() + "§c设置" + v.getTaskName() + "的" + v.getLoad() + "进度失败");
+                        sender.sendMessage("§6[§7Task System§6] §7" + p.getName() + "§c failed to set the progress of " + v.getTaskName() + " to " + v.getLoad());
                     }
                 }
             } else {
@@ -53,7 +53,8 @@ public class SetTaskValueSubCommand extends BaseSubCommand {
             }
         } else {
             if (args.length > 5 && "true".equalsIgnoreCase(args[5])) {
-                sender.sendMessage("玩家" + player + "不在线");
+                sender.sendMessage("Player " + player + " is not online");
+
             }
         }
         return true;

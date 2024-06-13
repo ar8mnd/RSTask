@@ -115,36 +115,36 @@ public class TaskFile {
         /**
          * 破坏任务
          */
-        BlockBreak("破坏"),
+        BlockBreak("devastation"), // 破坏
         /**
          * 放置任务
          */
-        BlockPlayer("放置"),
+        BlockPlayer("place"), // 放置
         /**
          * 丢弃任务
          */
-        DropItem("丢弃"),
+        DropItem("discards"), // 丢弃
         /**
          * 收集任务
          */
-        CollectItem("收集"),
+        CollectItem("collects"), // 收集
         /**
          * 合成任务
          */
-        CraftItem("合成"),
+        CraftItem("synthesize"), // 合成
         /**
          * 获得 任务
          */
-        GetItem("获得"),
+        GetItem("attainment"), // 获得
 
-        EatItem("吃"),
+        EatItem("stammer"), // 吃
 
-        GetWater("打水"),
+        GetWater("splashWater"), // 打水
 
-        Click("点击"),
+        Click("strike"), // 点击
 
+        DIY("customizable"); // 自定义
 
-        DIY("自定义");
         protected String taskType;
 
         TaskType(String taskType) {
@@ -182,7 +182,7 @@ public class TaskFile {
     }
 
     public TaskFile(String taskName, TaskType type, TaskItem[] taskItem, String taskMessage, int star, int group, SuccessItem item, SuccessItem firstItem, String task, int day, int messageType) {
-        this(taskName, type, taskItem, taskMessage, star, group, item, firstItem, task, day, messageType, "§l§c[§b任务系统§c]§e恭喜 §a%p §e完成了§d[ %s ]§e任务");
+        this(taskName, type, taskItem, taskMessage, star, group, item, firstItem, task, day, messageType, "§l§c[§bTask system§c]§eCongratulations §a%p §eCompletion of §d[ %s]§eTasks");
     }
 
     public TaskFile(String taskName, TaskType type, TaskItem[] taskItem, String taskMessage, int star, int group, SuccessItem item, SuccessItem firstItem, String task, int day, int messageType, String broadcastMessage) {
@@ -202,7 +202,7 @@ public class TaskFile {
         this.firstSuccessItem = firstItem;
         this.messageType = messageType;
         this.button = button;
-        this.showName = "这是一个任务";
+        this.showName = "It's a mission.";
         this.broadcastMessage = broadcastMessage;
     }
 
@@ -257,31 +257,32 @@ public class TaskFile {
         }
         Config config = RsTask.getTask().getTaskConfig(taskName);
         if (showName == null) {
-            showName = config.getString("任务显示名称", "这是一个任务");
+            showName = config.getString("任务显示名称", "It's a mission.");
         }
-        config.set("任务显示名称", showName);
-        config.set("任务难度", star);
-        config.set("任务分组", group);
-        config.set("任务介绍", taskMessage == null ? "无" : taskMessage);
-        config.set("刷新时间(分钟)", day);
-        config.set("持续时间(分钟)", loadDay);
-        config.set("任务类型", type.getTaskType());
-        config.set("完成次数限制", successCount);
+        config.set("task-display-name", showName);
+        config.set("task-difficulty", star);
+        config.set("task-group", group);
+        config.set("task-introduction", taskMessage == null ? "none" : taskMessage);
+        config.set("refresh-time", day);
+        config.set("duration-time", loadDay);
+        config.set("task-type", type.getTaskType());
+        config.set("completion-count-limit", successCount);
         if (task != null && !"null".equals(task)) {
-            config.set("完成此任务前需完成", task);
+            config.set("need-to-complete-this-task-before", task);
         }
-        config.set("完成以下任务不能领取此任务", notInviteTasks);
-        config.set("领取以下任务不能领取此任务", notToInviteTasks);
-        config.set("任务内容", taskitems);
+        config.set("cannot-accept-this-task-after-completing", notInviteTasks);
+        config.set("cannot-accept-this-task-after-receiving", notToInviteTasks);
+        config.set("task-content", taskitems);
         if (firstSuccessItem != null) {
-            config.set("首次完成奖励", firstSuccessItem.toSaveConfig());
+            config.set("first-completion-reward", firstSuccessItem.toSaveConfig());
         } else {
-            config.set("首次完成奖励", successItem.toSaveConfig());
+            config.set("first-completion-reward", successItem.toSaveConfig());
         }
-        config.set("奖励", successItem.toSaveConfig());
-        config.set("完成公告类型(0/1)", messageType);
-        config.set("公告内容", broadcastMessage);
-        config.set("自定义按键图片", button.toSaveConfig());
+        config.set("reward", successItem.toSaveConfig());
+        config.set("completion-notification-type", messageType);
+        config.set("notification-content", broadcastMessage);
+        config.set("custom-button-image", button.toSaveConfig());
+
         config.save();
         RsTask.getTask().taskConfig.put(taskName, config);
     }
@@ -421,8 +422,8 @@ public class TaskFile {
         try {
             if (isFileTask(taskName)) {
                 Config config = RsTask.getTask().getTaskConfig(taskName);
-                String sType = config.getString("任务类型");
-                int succount = config.getInt("完成次数限制", 1);
+                String sType = config.getString("task-type");
+                int succount = config.getInt("completion-count-limit", 1);
                 TaskType type = null;
                 for (TaskType taskType : TaskType.values()) {
                     if (taskType.getTaskType().equals(sType)) {
@@ -430,7 +431,7 @@ public class TaskFile {
                         break;
                     }
                 }
-                Map map = (Map) config.get("任务内容");
+                Map map = (Map) config.get("task-content");
                 TaskItem[] taskItems;
                 if (map != null) {
                     taskItems = new TaskItem[map.size()];
@@ -446,9 +447,9 @@ public class TaskFile {
                 } else {
                     return null;
                 }
-                Map firstSuccess = (Map) config.get("首次完成奖励");
+                Map firstSuccess = (Map) config.get("first-completion-reward");
                 SuccessItem first = SuccessItem.toSuccessItem(firstSuccess);
-                Map success = (Map) config.get("奖励");
+                Map success = (Map) config.get("reward");
                 SuccessItem second = SuccessItem.toSuccessItem(success);
                 if (type == null) {
                     return null;
@@ -457,31 +458,31 @@ public class TaskFile {
                         taskName,
                         type,
                         taskItems,
-                        config.getString("任务介绍"),
-                        config.getInt("任务难度"),
-                        config.getInt("任务分组",
-                                config.getInt("任务难度") - 1),
+                        config.getString("task-introduction"),
+                        config.getInt("task-difficulty"),
+                        config.getInt("task-group",
+                                config.getInt("task-difficulty") - 1),
                         second,
                         first,
-                        config.getString("完成此任务前需完成"),
-                        config.getInt("刷新时间(分钟)", 0),
-                        config.getInt("完成公告类型(0/1)"), config.getString("公告内容"),
-                        TaskButton.toTaskButton((Map) config.get("自定义按键图片"))
+                        config.getString("need-to-complete-this-task-before"),
+                        config.getInt("refresh-time", 0),
+                        config.getInt("completion-notification-type"), config.getString("公告内容"),
+                        TaskButton.toTaskButton((Map) config.get("custom-button-image"))
                 );
-                file.setShowName(config.getString("任务显示名称"));
+                file.setShowName(config.getString("task-display-name"));
                 file.setSuccessCount(succount);
-                file.setNotInviteTasks(new LinkedList<>(config.getStringList("完成以下任务不能领取此任务")));
-                file.setNotToInviteTasks(new LinkedList<>(config.getStringList("领取以下任务不能领取此任务")));
-                file.setLoadDay(config.getInt("持续时间(分钟)", 1440));
+                file.setNotInviteTasks(new LinkedList<>(config.getStringList("cannot-accept-this-task-after-completing")));
+                file.setNotToInviteTasks(new LinkedList<>(config.getStringList("cannot-accept-this-task-after-receiving")));
+                file.setLoadDay(config.getInt("duration-time", 1440));
                 return file;
             }
         } catch (Exception e) {
-            Server.getInstance().getLogger().error("读取" + taskName + "任务文件出现错误 可能是因为已经不存在或者 配置出现问题", e);
+            Server.getInstance().getLogger().error("Read " + taskName + "Errors in the task file may occur because it no longer exists or because there is a configuration problem.", e);
             File file = new File(RsTask.getTask().getDataFolder() + "/Tasks/" + taskName + ".yml");
             if (file.exists()) {
-                Server.getInstance().getLogger().error("更新报错: 检测到" + taskName + "存在，已删除" + taskName + ".yml文件");
+                Server.getInstance().getLogger().error("Update Error: Detected " + taskName + " Existing, deleted " + taskName + ".yml file");
                 if (!file.delete()) {
-                    Server.getInstance().getLogger().error("删除" + taskName + ".yml失败");
+                    Server.getInstance().getLogger().error("removing" + taskName + ".yml file");
                 }
             }
             return null;
@@ -572,7 +573,7 @@ public class TaskFile {
                     errorCount++;
                 }
             }
-            RsTask.getTask().getLogger().info(TextFormat.colorize('&', "任务加载完成 &a" + sCount + "&r个任务加载成功 &c" + errorCount + "&r个任务加载失败"));
+            RsTask.getTask().getLogger().info(TextFormat.colorize('&', "Task loading complete &a" + sCount + "&r task loaded successfully &c" + errorCount + "&r tasks failed to load"));
 
         }
         return names;
@@ -609,7 +610,7 @@ public class TaskFile {
         if (type == PlayerFile.PlayerTaskType.can_Invite || type == PlayerFile.PlayerTaskType.isSuccess_canInvite) {
             int starCount = DataTool.starNeed(file.getGroup());
             if (RsTask.canOpen() && file1.getCount() < starCount) {
-                player.sendMessage(RsTask.getTask().getLag("not-add-task", "§c[任务系统] 抱歉，此任务不能领取"));
+                player.sendMessage(RsTask.getTask().getLag("not-add-task", "§c [Task System] Sorry, this task is not available."));
                 return false;
             } else {
                 PlayerAddTaskEvent event1 = new PlayerAddTaskEvent(player, file);
@@ -643,12 +644,12 @@ public class TaskFile {
             //流逝的时间 (分钟)
             int out = DataTool.getTime(file1.getTaskByName(file.getTaskName()).getTaskClass().getTime());
             int dayM = ((day > out) ? (day - out) : 0);
-            String dayMs = dayM + " 分钟";
+            String dayMs = dayM + " minutes";
             if (dayM / hours >= 1) {
                 if (dayM / dayTime >= 1) {
-                    dayMs = (dayM / dayTime) + " 天";
+                    dayMs = (dayM / dayTime) + " days";
                 } else {
-                    dayMs = (dayM / hours) + " 小时";
+                    dayMs = (dayM / hours) + " hours";
                 }
             }
             player.sendMessage(RsTask.getTask().getLag("repeat-inDay").
@@ -656,7 +657,7 @@ public class TaskFile {
             return false;
         }
         if (type == PlayerFile.PlayerTaskType.No_Invite) {
-            player.sendMessage(RsTask.getTask().getLag("not-add-task", "§c[任务系统] 抱歉，此任务不能领取"));
+            player.sendMessage(RsTask.getTask().getLag("not-add-task", "§c [Task System] Sorry, this task is not available."));
             return false;
         }
 

@@ -7,11 +7,12 @@ import com.task.commands.sub.*;
 
 /**
  * 任务主命令 （管理）
+ *
  * @author SmallasWater
  */
 public class TaskCommand extends BaseCommand {
     public TaskCommand(String name) {
-        super(name, "任务系统主命令");
+        super(name, "Task system master command");
         this.setPermission("RSTask.command.ic");
         this.addSubCommand(new IcSubCommand("ic"));
         this.addSubCommand(new DelSubCommand("del"));
@@ -25,7 +26,7 @@ public class TaskCommand extends BaseCommand {
 
     @Override
     public boolean execute(CommandSender sender, String s, String[] args) {
-        if(args.length > 0) {
+        if (args.length > 0) {
             return super.execute(sender, s, args);
         }
         sendHelp(sender);
@@ -39,12 +40,12 @@ public class TaskCommand extends BaseCommand {
 
     @Override
     public void sendHelp(CommandSender sender) {
-        sender.sendMessage("§6[§7任务系统§6] §e->§2 /task ic §7创建任务指令");
-        sender.sendMessage("§6[§7任务系统§6] §e->§2 /task del <名称> §7删除指定任务");
-        sender.sendMessage("§6[§7任务系统§6] §e->§2 /task reload §7重新加载配置");
-        sender.sendMessage("§6[§7任务系统§6] §e->§2 /task c <玩家> <任务名> §7让玩家打开任务");
-        sender.sendMessage("§6[§7任务系统§6] §e->§2 /task clist <玩家> <分组> §7打开指定分组GUI");
-        sender.sendMessage("§6[§7任务系统§6] §e->§2 /task latest <玩家> <分组> §7打开这个分组玩家最新领取的任务");
-        sender.sendMessage("§6[§7任务系统§6] §e->§2 /task count <玩家> <积分> §7设置玩家任务积分");
+        sender.sendMessage("§6[§7Task System§6] §e->§2 /task ic §7Create a task command");
+        sender.sendMessage("§6[§7Task System§6] §e->§2 /task del <name> §7Delete the specified task");
+        sender.sendMessage("§6[§7Task System§6] §e->§2 /task reload §7Reload the configuration");
+        sender.sendMessage("§6[§7Task System§6] §e->§2 /task c <player> <task name> §7Let the player open the task");
+        sender.sendMessage("§6[§7Task System§6] §e->§2 /task clist <player> <group> §7Open the specified group GUI");
+        sender.sendMessage("§6[§7Task System§6] §e->§2 /task latest <player> <group> §7Open the latest task received by the player in this group");
+        sender.sendMessage("§6[§7Task System§6] §e->§2 /task count <player> <points> §7Set the player's task points");
     }
 }

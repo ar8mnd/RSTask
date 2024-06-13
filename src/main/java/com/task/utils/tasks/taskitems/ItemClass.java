@@ -93,7 +93,6 @@ public class ItemClass implements InstanceItem {
         }
         if (defaultString.split("@").length > 1) {
             if (defaultString.split(":").length < 2) {
-                System.out.print("ABOBA");
                 return toItem(new TaskItem(null, defaultString, 0));
             } else {
                 if ("item".equals(defaultString.split("@")[1])) {
@@ -184,7 +183,7 @@ public class ItemClass implements InstanceItem {
             ItemClass itemClass = RsTask.getTask().getTagItemsConfig(custom);
             if (itemClass == null) {
                 Item item1 = new ConstAirItem();
-                item1.setCustomName("无数据");
+                item1.setCustomName("No data available");
                 return new ItemClass(item1);
             }
             return itemClass;
@@ -193,7 +192,7 @@ public class ItemClass implements InstanceItem {
             ItemLib lib = ItemLib.getItem(custom);
             if (lib == null) {
                 Item item1 = new ConstAirItem();
-                item1.setCustomName("无数据");
+                item1.setCustomName("No data available");
                 return new ItemClass(item1);
             }
             return lib;

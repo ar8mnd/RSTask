@@ -64,21 +64,20 @@ public class LaTestSubCommand extends BaseSubCommand {
                             return true;
 
                         } else {
-                            sender.sendMessage("§6[§7任务系统§6] 玩家: " + player.getName() + "没有在" + group + "分组领取任务");
+                            sender.sendMessage("§6[§7Task System§6] Player: " + player.getName() + " did not receive a task in group " + group);
                         }
                     } else {
-                        sender.sendMessage("§6[§7任务系统§6] 不存在分组: " + group);
+                        sender.sendMessage("§6[§7Task System§6] Group: " + group + " does not exist");
                         return true;
                     }
 
                 } catch (Exception e) {
-                    sender.sendMessage("§6[§7任务系统§6] 请输入正确的分组 （整数）");
+                    sender.sendMessage("§6[§7Task System§6] Please enter a valid group (integer)");
                     return true;
                 }
 
-
             } else {
-                sender.sendMessage("§6[§7任务系统§6] §c玩家" + playerName + "不在线");
+                sender.sendMessage("§6[§7Task System§6] §cPlayer " + playerName + " is not online");
             }
         } else {
             return false;
@@ -91,7 +90,8 @@ public class LaTestSubCommand extends BaseSubCommand {
             int starCount = DataTool.starNeed(group);
             PlayerFile pf = PlayerFile.getPlayerFile(player.getName());
             if (pf.getCount() < starCount) {
-                sender.sendMessage(TextFormat.RED + "玩家 " + playerName + "积分无法开启 " + group + " 分组");
+                sender.sendMessage(TextFormat.RED + "Player " + playerName + " does not have enough points to open group " + group);
+
                 return true;
             }
         }

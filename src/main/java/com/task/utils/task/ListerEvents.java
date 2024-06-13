@@ -165,7 +165,7 @@ public class ListerEvents implements Listener {
         String playerName = event.getPlayer().getPlayerName();
         Player player = Server.getInstance().getPlayer(playerName);
         if (player != null) {
-            player.sendMessage(RsTask.getTask().getLag("task-time-out", "§d§l[任务系统]§c 你的任务 %s 超时啦").
+            player.sendMessage(RsTask.getTask().getLag("task-time-out", "§d§l[Task system]§c Your task %s timeout.").
                     replace("%s", event.getFile().getName()));
 
         }
@@ -181,10 +181,10 @@ public class ListerEvents implements Listener {
         TaskFile file = event.getFile();
         PlayerFile file2 = PlayerFile.getPlayerFile(player.getName());
         if (!file2.closeTask(file.getTaskName())) {
-            Server.getInstance().getLogger().warning("玩家" + player.getName() + "取消" + file.getTaskName() + "任务异常");
+            Server.getInstance().getLogger().warning("player " + player.getName() + " abolish " + file.getTaskName() + " mission anomaly");
             return;
         }
-        player.sendMessage(RsTask.getTask().getLag("giveUpTaskMessage", "§d§l[任务系统]§b 您放弃了 %s 任务")
+        player.sendMessage(RsTask.getTask().getLag("giveUpTaskMessage", "§d§l[Quest system]§b You abandoned the %s quest.")
                 .replace("%s", file.getName()));
         RsTask.getTask().getClickTask.remove(player);
 
@@ -198,7 +198,7 @@ public class ListerEvents implements Listener {
             return;
         }
         if (player.getGamemode() == 1) {
-            player.sendMessage(RsTask.getTask().getLag("CreateUI", "§d§l[任务系统]§c创造模式无法唤醒UI"));
+            player.sendMessage(RsTask.getTask().getLag("CreateUI", "§d§l[Quest system]§c Creation mode can't wake up UI"));
             return;
         }
         TaskFile file = event.getFile();
@@ -211,7 +211,6 @@ public class ListerEvents implements Listener {
                 CreateMenu.sendTaskMenu(player, file);
             }
         }
-//
     }
 
     private void addBook(Player player, TaskFile file) {
@@ -221,7 +220,7 @@ public class ListerEvents implements Listener {
                 TaskBook book = new TaskBook(written);
                 book.setTitle(file.getTaskName());
                 book.setCustomName(file.getName());
-                book.writeIn("\n\n\n\n加载中...请再次打开");
+                book.writeIn("\n\n\n\nLoading... Please open again");
                 ItemWrittenBook written1 = book.toBook();
                 player.getInventory().addItem(written1.clone());
             }
@@ -252,7 +251,7 @@ public class ListerEvents implements Listener {
         Player player = event.getPlayer();
         TaskFile file = event.getFile();
         if (player.getGamemode() == 1) {
-            player.sendMessage(RsTask.getTask().getLag("CreateUI", "§d§l[任务系统]§c创造模式无法唤醒UI"));
+            player.sendMessage(RsTask.getTask().getLag("CreateUI", "§d§l[Quest system]§c Creation mode can't wake up UI"));
             return;
         }
 
@@ -270,11 +269,12 @@ public class ListerEvents implements Listener {
         TaskFile file = event.getFile();
 
         RsTask.getTask().tasks.remove(file.getTaskName());
-        Server.getInstance().getLogger().info("[任务系统] 准备删除" + file.getTaskName() + "任务");
+        Server.getInstance().getLogger().info("[Task System] Preparing to delete the task " + file.getTaskName());
         RsTask.getTask().taskConfig.remove(event.getFile().getTaskName());
-        Server.getInstance().getLogger().info("[任务系统] 开始查找玩家");
+        Server.getInstance().getLogger().info("[Task System] Starting to search for players");
         LinkedList<String> players = RsTask.getTask().getPlayerNames();
-        Server.getInstance().getLogger().info("[任务系统] 已查找到" + players.size() + "位玩家");
+        Server.getInstance().getLogger().info("[Task System] Found " + players.size() + " players");
+
         int i = 0;
         for (String playerName : players) {
             Player player = Server.getInstance().getPlayer(playerName);
@@ -286,14 +286,14 @@ public class ListerEvents implements Listener {
             if (file1.issetTask(file)) {
                 i++;
                 if (!file1.delTask(file.getTaskName())) {
-                    Server.getInstance().getLogger().info("[任务系统] 玩家" + playerName + "移除" + file.getTaskName() + "任务失败");
+                    Server.getInstance().getLogger().info("[Task System] Player " + playerName + " failed to remove task " + file.getTaskName());
                 } else {
-                    Server.getInstance().getLogger().info("[任务系统] 玩家" + playerName + "移除" + file.getTaskName() + "任务成功");
+                    Server.getInstance().getLogger().info("[Task System] Player " + playerName + " successfully removed task " + file.getTaskName());
                 }
             }
 
         }
-        Server.getInstance().getLogger().info("[任务系统] 已将" + file.getTaskName() + "任务从" + i + "位玩家移除");
+        Server.getInstance().getLogger().info("[Task System] Removed task " + file.getTaskName() + " from " + i + " players");
     }
 
 
@@ -381,12 +381,10 @@ public class ListerEvents implements Listener {
 
     private static void useTask(Player player, PlayerTask task) {
         if (player.getGamemode() == 1) {
-            player.sendMessage(RsTask.getTask().getLag("CreateTask", "§d§l[任务系统]§c创造模式无法增加任务"));
+            player.sendMessage(RsTask.getTask().getLag("CreateTask", "§d§l[Task system]§c Creation mode cannot add tasks"));
             return;
         }
         UseTaskEvent event = new UseTaskEvent(player, task);
         Server.getInstance().getPluginManager().callEvent(event);
     }
-
-
 }

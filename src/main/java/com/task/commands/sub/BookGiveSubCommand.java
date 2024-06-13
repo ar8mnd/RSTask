@@ -32,7 +32,7 @@ public class BookGiveSubCommand extends BaseSubCommand {
             String taskName = args[1];
             TaskFile file = TaskFile.getTask(taskName);
             if (file == null) {
-                sender.sendMessage("§c不存在" + args[1] + "任务");
+                sender.sendMessage("§cTask " + args[1] + " does not exist");
                 return true;
             }
             PlayerFile file1 = PlayerFile.getPlayerFile(sender.getName());
@@ -42,15 +42,16 @@ public class BookGiveSubCommand extends BaseSubCommand {
 
                 book.setTitle(file.getTaskName());
                 book.setCustomName(file.getName());
-                book.writeIn("\n\n\n\n加载中...请再次打开");
+                book.writeIn("\n\n\n\nLoading... Please open it again");
                 ((Player) sender).getInventory().setItemInHand(book.toBook().clone());
             } else {
-                sender.sendMessage("§c" + args[1] + "任务不可领取");
+                sender.sendMessage("§cTask " + args[1] + " cannot be received");
                 return true;
             }
 
         } else {
-            sender.sendMessage("§c 请填写任务名称");
+            sender.sendMessage("§c Please fill in the task name");
+
         }
         return true;
     }

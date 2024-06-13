@@ -34,7 +34,7 @@ public class AutoSaveFileTask implements Runnable {
     @Override
     public void run() {
         while (true) {
-            getOwner().getLogger().info("[自动保存] 正在保存插件数据");
+            getOwner().getLogger().info("[Auto Save] Plug-in data being saved");
             RsTask.executor.submit(() -> {
                 try {
                     for (TaskFile file : getOwner().tasks.values()) {
@@ -49,25 +49,25 @@ public class AutoSaveFileTask implements Runnable {
                             errorCount++;
                         }
                     }
-                    getOwner().getLogger().info("[自动保存] 保存完成 " + saveTaskCount + "个任务配置保存成功" + saveCount + "个玩家任务数据保存成功 ");
+                    getOwner().getLogger().info("[Auto Save] Save completed. " + saveTaskCount + " task configurations saved successfully, " + saveCount + " player task data saved successfully.");
                     if (errorCount > 0) {
-                        getOwner().getLogger().warning("[自动保存] " + errorCount + " 个玩家任务数据保存失败");
+                        getOwner().getLogger().warning("[Auto Save] " + errorCount + " player task data failed to save.");
                     }
                     saveTaskCount = 0;
                     saveCount = 0;
                     errorCount = 0;
                 } catch (Exception e) {
-                    getOwner().getLogger().info("[自动保存] 保存出现异常 " + saveTaskCount + "个任务配置保存成功" + saveCount + "个玩家任务数据保存成功 " + errorCount + " 个玩家任务数据保存失败");
+                    getOwner().getLogger().info("[Auto Save] An exception occurred during saving. " + saveTaskCount + " task configurations saved successfully, " + saveCount + " player task data saved successfully, " + errorCount + " player task data failed to save.");
                 }
             });
             try {
                 Thread.sleep(getOwner().getConfig().getInt("auto-save-task.time") * 60000L);
             } catch (InterruptedException e) {
-                getOwner().getLogger().error("[任务] 保存任务数据出现异常", e);
+                getOwner().getLogger().error("[Task] An exception occurred while saving task data.", e);
+            }
+
                 Server.getInstance().getPluginManager().callEvent(new TaskStopEvent(getOwner(), this));
                 return;
             }
         }
-
-    }
 }

@@ -15,7 +15,7 @@ import com.task.commands.sub.SetTaskValueSubCommand;
  */
 public class RunTaskCommand extends BaseCommand {
     public RunTaskCommand(String name) {
-        super(name,"增加任务进度");
+        super(name,"Increase in mission progress");
         this.setPermission("RSTask.command.sh");
         this.usageMessage = "/rtc help";
         this.addSubCommand(new AddTaskValueSubCommand("add"));
@@ -31,14 +31,12 @@ public class RunTaskCommand extends BaseCommand {
     }
 
 
-
-
     @Override
     public void sendHelp(CommandSender sender) {
-        sender.sendMessage("/rtc add <玩家> <任务名> <进度> <数量> <提示(false) 可不填>");
-        sender.sendMessage("/rtc addall <玩家> <进度> <数量> <提示(false) 可不填>");
-        sender.sendMessage("/rtc set <玩家> <进度> <数量> <提示(false) 可不填>");
-        sender.sendMessage("/rtc setall <玩家> <进度> <数量> <提示(false) 可不填>");
-        sender.sendMessage("ps: 收集类型物品无法增加进度");
+        sender.sendMessage("/rtc add <player> <task name> <progress> <quantity> <hint (false) optional>");
+        sender.sendMessage("/rtc addall <player> <progress> <quantity> <hint (false) optional>");
+        sender.sendMessage("/rtc set <player> <progress> <quantity> <hint (false) optional>");
+        sender.sendMessage("/rtc setall <player> <progress> <quantity> <hint (false) optional>");
+        sender.sendMessage("ps: Progress for collection-type items cannot be increased.");
     }
 }

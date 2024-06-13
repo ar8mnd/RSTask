@@ -12,7 +12,7 @@ import com.task.commands.sub.BookUpSubCommand;
  */
 public class BookCommand extends BaseCommand {
     public BookCommand(String name) {
-        super(name, "§a指令获得任务书");
+        super(name, "§aDirective to obtain a mission statement");
         this.addSubCommand(new BookUpSubCommand("up"));
         this.addSubCommand(new BookGiveSubCommand("give"));
         this.loadCommandBase();
@@ -37,8 +37,8 @@ public class BookCommand extends BaseCommand {
     @Override
     public void sendHelp(CommandSender sender) {
         sender.sendMessage("§c=======================");
-        sender.sendMessage("§e/cbook give <任务名称> 获得该任务的任务书");
-        sender.sendMessage("§e/cbook up 更新手中的任务书");
+        sender.sendMessage("§e/cbook give <task name> Get a task letter for this task");
+        sender.sendMessage("§e/cbook up Update the mission statement in hand");
         sender.sendMessage("§c=======================");
     }
 }
