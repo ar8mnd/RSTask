@@ -1,7 +1,6 @@
 package com.task.utils.tasks.taskitems;
 
 
-
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.element.ElementButtonImageData;
 
@@ -13,14 +12,15 @@ import java.util.Map;
  */
 public class TaskButton {
 
-    public enum ButtonImageType{
+    public enum ButtonImageType {
         /**
          * 按键贴图
-         * */
+         */
         Path("本地"),
         Url("网络");
         protected String name;
-        ButtonImageType(String name){
+
+        ButtonImageType(String name) {
             this.name = name;
         }
 
@@ -36,22 +36,20 @@ public class TaskButton {
 
     private String data;
 
-    public TaskButton(String text){
-        this(text,ButtonImageType.Path,"textures/items/book_enchanted");
+    public TaskButton(String text) {
+        this(text, ButtonImageType.Path, "textures/items/book_enchanted");
     }
 
-    private TaskButton(String buttonText, ButtonImageType buttonType, String buttonData){
-       text = buttonText;
-       type = buttonType;
-       data = buttonData;
+    private TaskButton(String buttonText, ButtonImageType buttonType, String buttonData) {
+        text = buttonText;
+        type = buttonType;
+        data = buttonData;
     }
 
 
-
-
-    public ElementButton toButton(){
+    public ElementButton toButton() {
         ElementButton elementButton = new ElementButton(text);
-        ElementButtonImageData imageData = new ElementButtonImageData(type == ButtonImageType.Path?"path":"url",data);
+        ElementButtonImageData imageData = new ElementButtonImageData(type == ButtonImageType.Path ? "path" : "url", data);
         elementButton.addImage(imageData);
         return elementButton;
     }
@@ -69,30 +67,30 @@ public class TaskButton {
     }
 
 
-    public LinkedHashMap<String,Object> toSaveConfig(){
-        LinkedHashMap<String,Object> linkedHashMap = new LinkedHashMap<>();
-        linkedHashMap.put("位置",type.getName());
-        linkedHashMap.put("路径",data);
+    public LinkedHashMap<String, Object> toSaveConfig() {
+        LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("位置", type.getName());
+        linkedHashMap.put("路径", data);
         return linkedHashMap;
     }
 
-    public static TaskButton toTaskButton(Map map){
-        if(map == null) {
+    public static TaskButton toTaskButton(Map map) {
+        if (map == null) {
             return null;
         }
         ButtonImageType type;
         String data;
-        if(map.containsKey("位置")){
-            type = "本地".equals(map.get("位置"))?ButtonImageType.Path:ButtonImageType.Url;
-        }else{
+        if (map.containsKey("位置")) {
+            type = "本地".equals(map.get("位置")) ? ButtonImageType.Path : ButtonImageType.Url;
+        } else {
             return null;
         }
-        if(map.containsKey("路径")){
+        if (map.containsKey("路径")) {
             data = (String) map.get("路径");
-        }else{
+        } else {
             return null;
         }
-        return new TaskButton("",type,data);
+        return new TaskButton("", type, data);
 
     }
 }

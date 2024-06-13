@@ -10,6 +10,7 @@ import cn.nukkit.plugin.Plugin;
  * Package com.task.events
  */
 public class TaskStopEvent extends PluginEvent {
+
     private static final HandlerList HANDLERS = new HandlerList();
 
     public static HandlerList getHandlers() {
@@ -17,7 +18,8 @@ public class TaskStopEvent extends PluginEvent {
     }
 
     private Runnable runnable;
-    public TaskStopEvent(Plugin plugin,Runnable runnable) {
+
+    public TaskStopEvent(Plugin plugin, Runnable runnable) {
         super(plugin);
         this.runnable = runnable;
     }

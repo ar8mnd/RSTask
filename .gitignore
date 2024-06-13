@@ -3,6 +3,9 @@
 # Compiled class file
 *.class
 
+# IDE Idea folder
+.idea
+
 # Log file
 *.log
 

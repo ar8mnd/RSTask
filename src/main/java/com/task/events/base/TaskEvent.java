@@ -10,6 +10,7 @@ import com.task.utils.tasks.TaskFile;
  * @create 2020/9/13 11:28
  */
 public class TaskEvent extends Event implements Cancellable {
+
     private static final HandlerList HANDLERS = new HandlerList();
 
     public static HandlerList getHandlers() {
@@ -17,14 +18,16 @@ public class TaskEvent extends Event implements Cancellable {
     }
 
     private final TaskFile file;
-    public TaskEvent(TaskFile file){
+
+    public TaskEvent(TaskFile file) {
         this.file = file;
     }
 
     /**
      * 返回任务类
+     *
      * @return {@link TaskFile}
-     * */
+     */
     public TaskFile getFile() {
         return file;
     }

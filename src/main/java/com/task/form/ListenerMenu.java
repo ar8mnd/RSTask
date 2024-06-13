@@ -11,7 +11,7 @@ import cn.nukkit.form.response.FormResponseCustom;
 import cn.nukkit.form.response.FormResponseModal;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemBookWritten;
+import cn.nukkit.item.ItemWrittenBook;
 import cn.nukkit.network.protocol.InventoryTransactionPacket;
 import com.task.RsTask;
 import com.task.events.PlayerClickTaskEvent;
@@ -119,9 +119,9 @@ public class ListenerMenu implements Listener {
         if (event.getPacket() instanceof InventoryTransactionPacket) {
             Player player = event.getPlayer();
             Item item = player.getInventory().getItemInHand();
-            if (item instanceof ItemBookWritten) {
-                if (TaskBook.isBook((ItemBookWritten) item)) {
-                    PlayerOpenBookEvent event1 = new PlayerOpenBookEvent(player, TaskBook.getTaskBookByItem((ItemBookWritten) item));
+            if (item instanceof ItemWrittenBook) {
+                if (TaskBook.isBook((ItemWrittenBook) item)) {
+                    PlayerOpenBookEvent event1 = new PlayerOpenBookEvent(player, TaskBook.getTaskBookByItem((ItemWrittenBook) item));
                     Server.getInstance().getPluginManager().callEvent(event1);
                 }
             }

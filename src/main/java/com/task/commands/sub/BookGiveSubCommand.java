@@ -3,7 +3,7 @@ package com.task.commands.sub;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParameter;
-import cn.nukkit.item.ItemBookWritten;
+import cn.nukkit.item.ItemWrittenBook;
 import com.task.commands.base.BaseSubCommand;
 import com.task.utils.DataTool;
 import com.task.utils.tasks.PlayerFile;
@@ -12,9 +12,11 @@ import com.task.utils.tasks.taskitems.TaskBook;
 
 /**
  * 给予玩家书本子指令
+ *
  * @author SmallasWater
  */
 public class BookGiveSubCommand extends BaseSubCommand {
+
     public BookGiveSubCommand(String name) {
         super(name);
     }
@@ -35,7 +37,7 @@ public class BookGiveSubCommand extends BaseSubCommand {
             }
             PlayerFile file1 = PlayerFile.getPlayerFile(sender.getName());
             if (file1.canInvite(file.getTaskName())) {
-                ItemBookWritten written = new ItemBookWritten();
+                ItemWrittenBook written = new ItemWrittenBook();
                 TaskBook book = new TaskBook(written);
 
                 book.setTitle(file.getTaskName());
@@ -47,22 +49,21 @@ public class BookGiveSubCommand extends BaseSubCommand {
                 return true;
             }
 
-        }else{
+        } else {
             sender.sendMessage("§c 请填写任务名称");
         }
         return true;
     }
 
     @Override
-    protected boolean canUse(CommandSender sender){
+    protected boolean canUse(CommandSender sender) {
         return sender.isOp();
     }
 
     @Override
     public CommandParameter[] getParameters() {
         return new CommandParameter[]{
-                new CommandParameter("taskName", DataTool.getTaskAllNames())
-
+                CommandParameter.newEnum("taskName", DataTool.getTaskAllNames())
         };
     }
 }

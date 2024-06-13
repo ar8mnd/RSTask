@@ -5,14 +5,14 @@ import com.task.utils.tasks.TaskFile;
 
 /**
  * 判断是否可领取的时候触发事件
+ *
  * @author SmallasWater
  */
 public class PlayerCanInviteTaskEvent extends TaskEvent {
 
-
     private final String playerName;
 
-    public PlayerCanInviteTaskEvent(String playerName,TaskFile task){
+    public PlayerCanInviteTaskEvent(String playerName, TaskFile task) {
         super(task);
         this.playerName = playerName;
     }
@@ -20,5 +20,4 @@ public class PlayerCanInviteTaskEvent extends TaskEvent {
     public String getPlayerName() {
         return playerName;
     }
-
 }

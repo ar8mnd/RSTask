@@ -25,7 +25,6 @@ public class PlayerClickTaskEvent extends PlayerEvent implements Cancellable {
 
     private boolean show = true;
 
-
     /**
      * 返回任务类
      *

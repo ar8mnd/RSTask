@@ -7,6 +7,7 @@ import com.task.utils.tasks.taskitems.TaskBook;
 
 /**
  * 玩家打开任务书事件
+ *
  * @author SmallasWater
  */
 public class PlayerOpenBookEvent extends PlayerEvent {
@@ -19,15 +20,16 @@ public class PlayerOpenBookEvent extends PlayerEvent {
 
     private final TaskBook bookWritten;
 
-    public PlayerOpenBookEvent(Player player, TaskBook written){
+    public PlayerOpenBookEvent(Player player, TaskBook written) {
         this.player = player;
         this.bookWritten = written;
     }
 
     /**
      * 返回任务书
+     *
      * @return {@link TaskBook}
-     * */
+     */
     public TaskBook getBookWritten() {
         return bookWritten;
     }

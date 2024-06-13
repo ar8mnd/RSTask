@@ -8,6 +8,7 @@ import com.task.form.CreateMenu;
 
 /**
  * 创建任务子指令
+ *
  * @author SmallasWater
  */
 public class IcSubCommand extends BaseSubCommand {
@@ -29,10 +30,10 @@ public class IcSubCommand extends BaseSubCommand {
 
     @Override
     public boolean execute(CommandSender sender, String s, String[] args) {
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             CreateMenu.sendCreateTaskMenu((Player) sender);
             return true;
-        }else{
+        } else {
             sender.sendMessage("控制台无法执行此指令");
         }
         return false;

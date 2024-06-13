@@ -9,8 +9,8 @@
     <version>1.8.5-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -31,6 +31,7 @@
         <repository>
             <id>opencollab-repo-release</id>
             <url>https://repo.opencollab.dev/maven-releases/</url>
+
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -52,14 +53,17 @@
             <id>repo-lanink-cn</id>
             <url>https://repo.lanink.cn/repository/maven-public/</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>cn.nukkit</groupId>
-            <artifactId>nukkit</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
+            <groupId>com.github.PowerNukkitX</groupId>
+            <artifactId>PowerNukkitX</artifactId>
+            <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.smallaswater.autoupdata</groupId>
@@ -67,30 +71,15 @@
             <version>1.2.3</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
-            <groupId>me.onebone</groupId>
-            <artifactId>economyapi</artifactId>
-            <version>2.0.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>money</groupId>
-            <artifactId>money</artifactId>
-            <version>1.1.7</version>
+            <groupId>com.github.angga7togk</groupId>
+            <artifactId>EconomyAPI-PNX</artifactId>
+            <version>1.0.2</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/Money-3.3.jar</systemPath>
+            <systemPath>${basedir}/lib/EconomyAPI-1.0.2.jar</systemPath>
         </dependency>
-        <dependency>
-            <groupId>net.player</groupId>
-            <artifactId>PlayerPoint</artifactId>
-            <version>1.2.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/PlayerPoints_v1.2.0.jar</systemPath>
-        </dependency>
-
-
     </dependencies>
+
     <build>
         <finalName>${project.artifactId}_v${project.version}</finalName>
         <plugins>
@@ -131,8 +120,5 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 
 </project>

@@ -18,7 +18,8 @@ import java.util.LinkedList;
 /**
  * 玩家收集物品任务
  *
- * @author SmallasWater*/
+ * @author SmallasWater
+ */
 public class CollectItemTask implements Runnable {
 
     private Player player;
@@ -27,7 +28,8 @@ public class CollectItemTask implements Runnable {
     private RsTask getOwner() {
         return owner;
     }
-    public CollectItemTask(RsTask plugin,Player player){
+
+    public CollectItemTask(RsTask plugin, Player player) {
         this.owner = plugin;
         this.player = player;
     }
@@ -35,32 +37,31 @@ public class CollectItemTask implements Runnable {
     public static void onRun(Player player) {
         PlayerFile file = PlayerFile.getPlayerFile(player.getName());
         LinkedList<PlayerTask> tasks = file.getPlayerTasks();
-        for(PlayerTask task:tasks){
-            if(task.getTaskFile().getType() == TaskFile.TaskType.CollectItem){
-                add(player,task.getTaskName(),task.getTaskClass().getValue());
+        for (PlayerTask task : tasks) {
+            if (task.getTaskFile().getType() == TaskFile.TaskType.CollectItem) {
+                add(player, task.getTaskName(), task.getTaskClass().getValue());
             }
         }
     }
 
-    private static void add(Player player, String taskName, TaskItem[] items){
+    private static void add(Player player, String taskName, TaskItem[] items) {
         PlayerFile file = PlayerFile.getPlayerFile(player.getName());
-        for(TaskItem item:items){
-            if(item != null){
+        for (TaskItem item : items) {
+            if (item != null) {
                 ItemClass itemClass = ItemClass.toItem(item);
-                if(itemClass != null){
-                    if(itemClass  instanceof ItemLib){
+                if (itemClass != null) {
+                    if (itemClass instanceof ItemLib) {
                         item.setEndCount(((ItemLib) itemClass).getPlayerAllItemCount(player));
-                    }else{
-                        item.setEndCount(DataTool.getCount(player,itemClass));
+                    } else {
+                        item.setEndCount(DataTool.getCount(player, itemClass));
                     }
-                    file.setTaskValue(taskName,item);
+                    file.setTaskValue(taskName, item);
 
                 }
 
             }
         }
     }
-
 
 
     @Override

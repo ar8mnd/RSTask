@@ -11,6 +11,7 @@ import com.task.events.TaskTimeOutEvent;
 
 /**
  * 检查任务状态
+ *
  * @author SmallasWater
  */
 public class ChunkTaskTask implements Runnable {
@@ -44,7 +45,7 @@ public class ChunkTaskTask implements Runnable {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                Server.getInstance().getPluginManager().callEvent(new TaskStopEvent(getOwner(),this));
+                Server.getInstance().getPluginManager().callEvent(new TaskStopEvent(getOwner(), this));
                 return;
             }
         }

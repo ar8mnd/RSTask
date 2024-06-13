@@ -14,22 +14,32 @@ import java.util.Map;
  */
 public class PlayerTaskClass {
 
-    /** 玩家配置存储任务 */
-    private  TaskItem[] value;
+    /**
+     * 玩家配置存储任务
+     */
+    private TaskItem[] value;
 
-    /** 日期 */
+    /**
+     * 日期
+     */
     private Date time;
 
-    /** 开关 */
+    /**
+     * 开关
+     */
     private boolean open = false;
 
-    /** 任务名称 */
+    /**
+     * 任务名称
+     */
     private final String taskName;
 
-    /** 完成次数 */
+    /**
+     * 完成次数
+     */
     private int count;
 
-    public PlayerTaskClass(String taskName, TaskItem[] taskItems, Date time, int count){
+    public PlayerTaskClass(String taskName, TaskItem[] taskItems, Date time, int count) {
         this.time = time;
         this.count = count;
         this.value = taskItems;
@@ -41,29 +51,28 @@ public class PlayerTaskClass {
     }
 
 
-    public LinkedHashMap<String,Object> toSaveConfig(){
-        LinkedHashMap<String,Object> taskItem = new LinkedHashMap<>();
-        for(TaskItem item:value){
+    public LinkedHashMap<String, Object> toSaveConfig() {
+        LinkedHashMap<String, Object> taskItem = new LinkedHashMap<>();
+        for (TaskItem item : value) {
             taskItem.putAll(item.toSaveConfig());
         }
-        LinkedHashMap<String,Object> t = new LinkedHashMap<>();
-        t.put("load",taskItem);
-        t.put("open",open);
+        LinkedHashMap<String, Object> t = new LinkedHashMap<>();
+        t.put("load", taskItem);
+        t.put("open", open);
         t.put("time", DataTool.toDateString(time));
-        t.put("count",count);
+        t.put("count", count);
         return t;
     }
-
 
 
     public String getTaskName() {
         return taskName;
     }
 
-    public int getLoad(TaskItem taskItem){
-        for(TaskItem item:value){
-            if(item != null) {
-                if(taskItem.equals(item)){
+    public int getLoad(TaskItem taskItem) {
+        for (TaskItem item : value) {
+            if (item != null) {
+                if (taskItem.equals(item)) {
                     return item.getEndCount();
                 }
             }
@@ -71,14 +80,14 @@ public class PlayerTaskClass {
         return 0;
     }
 
-    public boolean getOpen(){
+    public boolean getOpen() {
         return open;
     }
 
-    public void setLoad(TaskItem taskItem){
+    public void setLoad(TaskItem taskItem) {
         int i = 0;
-        for(TaskItem item:value){
-            if(taskItem.equals(item)){
+        for (TaskItem item : value) {
+            if (taskItem.equals(item)) {
                 value[i] = taskItem;
                 break;
             }
@@ -107,25 +116,24 @@ public class PlayerTaskClass {
     }
 
 
-
-    public boolean issetTaskItem(String item){
-        for(TaskItem item1:value){
-            if(item1.getTask().equals(item)) {
+    public boolean issetTaskItem(String item) {
+        for (TaskItem item1 : value) {
+            if (item1.getTask().equals(item)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static PlayerTaskClass toPlayerTaskClass(String taskName, Map map){
-        if(map == null) {
+    public static PlayerTaskClass toPlayerTaskClass(String taskName, Map map) {
+        if (map == null) {
             return null;
         }
         Map maps = (Map) map.get("load");
         TaskItem[] values = new TaskItem[maps.size()];
         int i = 0;
         TaskFile file = TaskFile.getTask(taskName);
-        if(file != null) {
+        if (file != null) {
             //对主体任务进行核对
             if (file.getTaskItem().length == values.length) {
                 for (Object so : maps.keySet()) {

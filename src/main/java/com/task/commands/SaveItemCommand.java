@@ -34,7 +34,7 @@ public class SaveItemCommand extends BaseCommand {
     public boolean execute(CommandSender sender, String s, String[] args) {
         if(sender instanceof Player){
             Item item = ((Player) sender).getInventory().getItemInHand();
-            if(item.getId() == 0){
+            if(item.getId().equals("minecraft:air")){
                 sender.sendMessage("§c无法添加空气");
                 return true;
             }

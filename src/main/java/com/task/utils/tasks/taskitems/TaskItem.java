@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * 任务目标
  *
- * @author SmallasWater*/
+ * @author SmallasWater
+ */
 public class TaskItem {
-
 
 
     private String taskName;
@@ -18,7 +18,7 @@ public class TaskItem {
     //任务分支名称
     private String task;
 
-    public TaskItem(String taskName,String task,int endCount){
+    public TaskItem(String taskName, String task, int endCount) {
         this.task = task;
         this.endCount = endCount;
         this.taskName = taskName;
@@ -29,48 +29,53 @@ public class TaskItem {
     }
 
 
-    /** 获取任务分支名称 */
+    /**
+     * 获取任务分支名称
+     */
     public String getTask() {
         return task;
     }
 
 
     @Override
-    public String toString(){
-        return task+":"+endCount;
+    public String toString() {
+        return task + ":" + endCount;
     }
 
 
-    public LinkedHashMap<String,Integer> toSaveConfig(){
-        return new LinkedHashMap<String,Integer>(){
+    public LinkedHashMap<String, Integer> toSaveConfig() {
+        return new LinkedHashMap<String, Integer>() {
             {
-                put(task,endCount);
+                put(task, endCount);
             }
         };
     }
 
 
-    /** 检测Task标签 */
-    public TaskItemTag getTaskTag(){
-        if(task.split("@").length > 1){
-            switch (task.split("@")[1]){
+    /**
+     * 检测Task标签
+     */
+    public TaskItemTag getTaskTag() {
+        if (task.split("@").length > 1) {
+            switch (task.split("@")[1]) {
                 case "tag":
                     return TaskItemTag.NbtItem;
                 case "item":
                     return TaskItemTag.defaultItem;
                 case "lib":
                     return TaskItemTag.lib;
-                    default:
-                        break;
+                default:
+                    break;
             }
         }
         return TaskItemTag.diyName;
     }
 
 
-
-    /** 如果为item | tag 则返回 ItemClass*/
-    public ItemClass getItemClass(){
+    /**
+     * 如果为item | tag 则返回 ItemClass
+     */
+    public ItemClass getItemClass() {
         return ItemClass.toItem(this);
     }
 
@@ -86,27 +91,34 @@ public class TaskItem {
     }
 
 
-    public enum TaskItemTag{
-        /** nbt物品*/
+    public enum TaskItemTag {
+        /**
+         * nbt物品
+         */
         NbtItem,
-        /**普通物品*/
+        /**
+         * 普通物品
+         */
         defaultItem,
-        /**物品字典*/
+        /**
+         * 物品字典
+         */
         lib,
-        /**自定义名称*/
+        /**
+         * 自定义名称
+         */
         diyName
     }
 
 
-
-    public static TaskItem toTaskItem(String taskName,Map<? extends String,? extends Integer> map){
-        if(map == null) {
+    public static TaskItem toTaskItem(String taskName, Map<? extends String, ? extends Integer> map) {
+        if (map == null) {
             return null;
         }
         for (String tag : map.keySet()) {
             int ints = map.get(tag);
-            if(tag != null){
-                return new TaskItem(taskName,tag,ints);
+            if (tag != null) {
+                return new TaskItem(taskName, tag, ints);
             }
         }
         return null;
@@ -116,33 +128,35 @@ public class TaskItem {
         this.endCount = endCount;
     }
 
-    public void addEndCount(int value){
+    public void addEndCount(int value) {
         this.endCount += value;
     }
 
 
-    /** defaultString: id:damage:count@item 或 id:count@tag 或 内容:id*/
-    public static TaskItem toTaskItem(String taskName,String defaultString){
-        if(defaultString.split("@").length < 1) {
+    /**
+     * defaultString: id:damage:count@item 或 id:count@tag 或 内容:id
+     */
+    public static TaskItem toTaskItem(String taskName, String defaultString) {
+        if (defaultString.split("@").length < 1) {
             return null;
         }
-        if(defaultString.split("@").length > 1){
+        if (defaultString.split("@").length > 1) {
             String sItem = defaultString.split("@")[0];
             String[] lists = sItem.split(":");
-            switch (defaultString.split("@")[1]){
+            switch (defaultString.split("@")[1]) {
                 case "item":
-                    return new TaskItem(taskName,lists[0]+":"+lists[1]+"@item",Integer.parseInt(lists[2]));
+                    return new TaskItem(taskName, lists[0] + ":" + lists[1] + "@item", Integer.parseInt(lists[2]));
                 case "tag":
 
-                    return new TaskItem(taskName,lists[0]+"@tag",Integer.parseInt(lists[1]));
+                    return new TaskItem(taskName, lists[0] + "@tag", Integer.parseInt(lists[1]));
                 case "lib":
-                    return new TaskItem(taskName,lists[0]+"@lib",Integer.parseInt(lists[1]));
-                    default:
-                        break;
+                    return new TaskItem(taskName, lists[0] + "@lib", Integer.parseInt(lists[1]));
+                default:
+                    break;
             }
         }
         String[] lists = defaultString.split(":");
-        return new TaskItem(taskName,lists[0],Integer.parseInt(lists[1]));
+        return new TaskItem(taskName, lists[0], Integer.parseInt(lists[1]));
     }
 
 }

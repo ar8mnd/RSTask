@@ -3,7 +3,7 @@ package com.task.utils.task;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemBookWritten;
+import cn.nukkit.item.ItemWrittenBook;
 import com.task.RsTask;
 import com.task.events.TaskStopEvent;
 import com.task.utils.tasks.taskitems.TaskBook;
@@ -12,6 +12,7 @@ import com.task.utils.tasks.PlayerFile;
 
 /**
  * 检查玩家背包任务书
+ *
  * @author SmallasWater
  */
 public class ChunkPlayerInventoryBookTask implements Runnable {
@@ -27,16 +28,15 @@ public class ChunkPlayerInventoryBookTask implements Runnable {
     }
 
 
-
     @Override
     public void run() {
         while (true) {
             //遍历检测玩家背包
             for (Player player : Server.getInstance().getOnlinePlayers().values()) {
                 for (Item item : player.getInventory().getContents().values()) {
-                    if (item instanceof ItemBookWritten) {
-                        if (TaskBook.isBook((ItemBookWritten) item)) {
-                            TaskBook book = TaskBook.getTaskBookByItem((ItemBookWritten) item);
+                    if (item instanceof ItemWrittenBook) {
+                        if (TaskBook.isBook((ItemWrittenBook) item)) {
+                            TaskBook book = TaskBook.getTaskBookByItem((ItemWrittenBook) item);
                             String taskName = book.title;
                             PlayerFile file = PlayerFile.getPlayerFile(player.getName());
                             if (file != null) {
@@ -64,7 +64,7 @@ public class ChunkPlayerInventoryBookTask implements Runnable {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                Server.getInstance().getPluginManager().callEvent(new TaskStopEvent(getOwner(),this));
+                Server.getInstance().getPluginManager().callEvent(new TaskStopEvent(getOwner(), this));
                 return;
             }
         }

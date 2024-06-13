@@ -17,13 +17,14 @@ import java.util.LinkedList;
 /**
  * 线程池处理玩家任务
  *
- * @author SmallasWater*/
+ * @author SmallasWater
+ */
 public class CheckInventoryTask implements Runnable {
     private Player player;
     private LinkedList<PlayerTask> getTasks;
     private PlayerFile file;
     private boolean cancel;
-    private Item oldItem,newItem;
+    private Item oldItem, newItem;
 
     CheckInventoryTask(Player player, LinkedList<PlayerTask> getTasks, PlayerFile file, Item oldItem, Item newItem, boolean cancel) {
 
@@ -50,8 +51,8 @@ public class CheckInventoryTask implements Runnable {
                             ItemClass itemClass = ItemClass.toItem(item);
 
                             if (itemClass != null) {
-                                if(itemClass instanceof ItemLib){
-                                    if(((ItemLib) itemClass).hasItem(oldItem) || ((ItemLib) itemClass).hasItem(newItem)){
+                                if (itemClass instanceof ItemLib) {
+                                    if (((ItemLib) itemClass).hasItem(oldItem) || ((ItemLib) itemClass).hasItem(newItem)) {
 
                                         int c = ((ItemLib) itemClass).getPlayerAllItemCount(player);
                                         if (c != item.getEndCount()) {
@@ -59,7 +60,7 @@ public class CheckInventoryTask implements Runnable {
                                         }
                                     }
 
-                                }else if (oldItem.equals(itemClass.getItem()) || newItem.equals(itemClass.getItem())) {
+                                } else if (oldItem.equals(itemClass.getItem()) || newItem.equals(itemClass.getItem())) {
                                     int c = DataTool.getCount(player, itemClass);
                                     if (c < 0) {
                                         c = 0;
@@ -80,11 +81,12 @@ public class CheckInventoryTask implements Runnable {
                 }
 
             }
-        }catch (Exception ignore){}
+        } catch (Exception ignore) {
+        }
 
     }
 
-    private boolean isNext(PlayerTask task){
+    private boolean isNext(PlayerTask task) {
         return (task.getTaskClass().getOpen()) || file.isSuccess(task.getTaskName());
     }
 

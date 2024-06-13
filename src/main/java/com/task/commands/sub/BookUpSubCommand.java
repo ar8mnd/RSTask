@@ -5,7 +5,7 @@ import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParameter;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemBookWritten;
+import cn.nukkit.item.ItemWrittenBook;
 import com.task.RsTask;
 import com.task.commands.base.BaseSubCommand;
 import com.task.events.PlayerOpenBookEvent;
@@ -15,6 +15,7 @@ import com.task.utils.tasks.taskitems.TaskBook;
 
 /**
  * 书本更新子指令
+ *
  * @author SmallasWater
  */
 public class BookUpSubCommand extends BaseSubCommand {
@@ -31,11 +32,11 @@ public class BookUpSubCommand extends BaseSubCommand {
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
         Item item = ((Player) sender).getInventory().getItemInHand();
-        if(item instanceof ItemBookWritten){
-            if(TaskBook.isBook((ItemBookWritten) item)){
-                RsTask.executor.submit(new CollectItemTask(RsTask.getTask(),(Player) sender));
+        if (item instanceof ItemWrittenBook) {
+            if (TaskBook.isBook((ItemWrittenBook) item)) {
+                RsTask.executor.submit(new CollectItemTask(RsTask.getTask(), (Player) sender));
                 PlayerOpenBookEvent event = new PlayerOpenBookEvent(
-                        (Player) sender,TaskBook.getTaskBookByItem(((ItemBookWritten) item)));
+                        (Player) sender, TaskBook.getTaskBookByItem(((ItemWrittenBook) item)));
                 Server.getInstance().getPluginManager().callEvent(event);
                 sender.sendMessage("§a==============");
                 sender.sendMessage("§e任务书更新成功");

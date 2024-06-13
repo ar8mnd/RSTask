@@ -7,7 +7,9 @@ import com.task.utils.tasks.TaskFile;
 
 /**
  * 玩家领取任务事件
- * @author SmallasWater */
+ *
+ * @author SmallasWater
+ */
 public class PlayerAddTaskEvent extends PlayerTaskEvent {
 
     public PlayerAddTaskEvent(Player player, TaskFile file) {

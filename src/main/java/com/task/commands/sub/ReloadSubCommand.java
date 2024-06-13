@@ -7,9 +7,11 @@ import com.task.RsTask;
 
 /**
  * 重新读取配置文件子指令
+ *
  * @author SmallasWater
  */
 public class ReloadSubCommand extends BaseSubCommand {
+
     public ReloadSubCommand(String name) {
         super(name);
     }
