@@ -14,45 +14,45 @@ version: "1.5.5"
 # Applies to task groups
 custom-image-path:
  "0":
-  name: "§7\[§aMain Line§7]§b Chapter One"
+  name: "§7[§aMain Line§7]§b Chapter One"
   image-type: "Local"
   image-path: "textures/ui/filledStarFocus"
   unlock-points: 0
   display: true
  "1":
-  name: "§7\[§aMain Line§7]§b Chapter Two"
+  name: "§7[§aMain Line§7]§b Chapter Two"
   image-type: "Local"
-  image-path: "textures/ui/icon\_deals"
+  image-path: "textures/ui/icon_deals"
   unlock-points: 100
   display: true
  "2":
-  name: "§7\[§aMain Line§7]§b Chapter Three"
+  name: "§7[§aMain Line§7]§b Chapter Three"
   image-type: "Local"
-  image-path: "textures/ui/icon\_best3"
+  image-path: "textures/ui/icon_best3"
   unlock-points: 200
   display: true
  "3":
-  name: "§7\[§aMain Line§7]§b Chapter Four"
+  name: "§7[§aMain Line§7]§b Chapter Four"
   image-type: "Local"
-  image-path: "textures/ui/icon\_armor"
+  image-path: "textures/ui/icon_armor"
   unlock-points: 300
   display: true
  "4":
-  name: "§7\[§aMain Line§7]§b Chapter Five"
+  name: "§7[§aMain Line§7]§b Chapter Five"
   image-type: "Local"
-  image-path: "textures/ui/icon\_balloon"
+  image-path: "textures/ui/icon_balloon"
   unlock-points: 400
   display: true
  "5":
-  name: "§7\[§cSide Line§7]§b Side Task"
+  name: "§7[§cSide Line§7]§b Side Task"
   image-type: "Local"
-  image-path: "textures/ui/icon\_blackfriday"
+  image-path: "textures/ui/icon_blackfriday"
   unlock-points: 0
   display: true
  "6":
-  name: "§7\[§bDaily§7]§b Daily Task"
+  name: "§7[§bDaily§7]§b Daily Task"
   image-type: "Local"
-  image-path: "textures/ui/icon\_book\_writable"
+  image-path: "textures/ui/icon_book_writable"
   unlock-points: 300
   display: true
 
