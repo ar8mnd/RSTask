@@ -182,7 +182,7 @@ public class CreateMenu {
             if (file != null) {
                 FormWindowModal simple = new FormWindowModal(task.getLag("title"),
                         RsTask.getTask().getLag("giveUpChose", "§d§Are you sure you want to give up? %s Tasks? {line breaks}§c loses current progress when abandoned")
-                                .replace("%s", file.getName()).replace("{换行}", "\n"), "recognize", "cancel");
+                                .replace("%s", file.getName()).replace("{line breaks}", "\n"), "recognize", "cancel");
 
                 send(player, simple, AGAIN);
             }
@@ -356,7 +356,7 @@ public class CreateMenu {
     public static void sendCreateTaskMenu(Player player) {
         FormWindowCustom custom = new FormWindowCustom("Create Task");
         custom.addElement(new ElementLabel("Task Creation UI. Please fill in according to the prompts. (This UI only provides simple task creation. For further changes, please modify the configuration)")); //0
-        custom.addElement(new ElementInput("Please enter the task name", "For example: Task①--Destroy and Collect Oak", "Task①--Destroy and Collect Oak")); //1
+        custom.addElement(new ElementInput("Please enter the task name", "For example: Collect Oak", "Collect Oak")); //1
         LinkedList<String> list = new LinkedList<>();
         for (TaskFile.TaskType type : TaskFile.TaskType.values()) {
             list.add(type.getTaskType());
@@ -370,10 +370,27 @@ public class CreateMenu {
             list1.add(map1.get("name").toString());
         }
         custom.addElement(new ElementDropdown("Please select the task group", list1)); //3
-        custom.addElement(new ElementInput("Please enter the task difficulty (integer)", "For example: 1", "1")); //4
-        custom.addElement(new ElementInput("Please enter the task description", "For example: Collect 10 Oak Wood", "Collect 10 Oak Wood")); //5
-        custom.addElement(new ElementInput("Please enter the task completion conditions (& separates multiple elements) @item for items (oak_log:0:10@item) @lib for item dictionary (wood:10@lib) @tag for NBT items (id:10@tag) (For custom tasks, please enter content: quantity)", "For example: oak_log:0:10@item or id:10@tag (collection task)", "17:0:10@item")); //6
-        custom.addElement(new ElementInput("Please enter the task rewards (& separates multiple elements) @item for reward items @tag for reward items in TagItem.json @lib for reward items in the item dictionary (only the first one) @money for reward money @Cmd for reward commands (%p represents player)", "For example: netherite_sword:0:1@item or id:1@tag", "netherite_sword:0:1@item&100@money")); //7
+        custom.addElement(new ElementInput(
+                "Please enter the task difficulty (integer)\n",
+                "For example: 1\n",
+                "1"
+        )); //4
+        custom.addElement(new ElementInput(
+                "Please enter the task description\n",
+                "For example: Collect 10 Oak Wood\n",
+                "Collect 10 Oak Wood"
+        )); //5
+        custom.addElement(new ElementInput(
+                "Please enter the task completion conditions\n(& - separates multiple elements)\n@item for items (oak_log:0:10@item)\n@lib for item dictionary (wood:10@lib)\n@tag for NBT items (id:10@tag)\n(For custom tasks, please enter content: quantity)\n",
+                "For example: oak_log:0:10@item or id:10@tag (collection task)\n",
+                "oak_log:0:10@item"
+        ));
+        custom.addElement(new ElementInput(
+                "Please enter the task rewards (& separates multiple elements)\n@item for reward items\n@tag for reward items in TagItem.json\n@lib for reward items in the item dictionary (only the first one)\n@money for reward money\n@Cmd for reward commands (%p represents player)\n",
+                "For example:\n netherite_sword:0:1@item or id:1@tag\n",
+                "netherite_sword:0:1@item&100@money"
+        ));
+
         send(player, custom, CREATE);
     }
 

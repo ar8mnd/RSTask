@@ -140,7 +140,7 @@ public class ListerEvents implements Listener {
         if (RsTask.showLoading) {
             if (!file.isSuccess(newTask.getTaskName())) {
                 String send = RsTask.getTask().getLag("run-task").
-                        replace("%s", task.getTaskFile().getName()).replace("%c", String.format("%.2f", RsTask.getTask().
+                        replace("%s", task.getTaskFile().getName()).replace("%c", String.format("%.0f", RsTask.getTask().
                                 getTaskLoading(task.getTaskName(), player.getName()))).replace("\\n", "\n");
                 DataTool.sendMessage(player, send);
                 DataTool.sendMessage(player, send);
