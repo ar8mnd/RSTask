@@ -58,7 +58,7 @@ public class CreateMenu {
                                 : "");
         int i = 0;
         int b = 0;
-        Map map = ((Map) task.getConfig().get("自定义图片路径"));
+        Map map = ((Map) task.getConfig().get("custom-image-path"));
         for (Object o : map.keySet()) {
 
             Map map1 = (Map) map.get(o);
@@ -81,12 +81,12 @@ public class CreateMenu {
                 }
             }
             boolean isShow = true;
-            if (map1.containsKey("是否显示")) {
-                isShow = Boolean.valueOf(map1.get("是否显示").toString());
+            if (map1.containsKey("display")) {
+                isShow = Boolean.valueOf(map1.get("display").toString());
             }
             if (isShow) {
-                ElementButton button = new ElementButton(map1.get("名称") + s);
-                ElementButtonImageData imageData = new ElementButtonImageData("网络".equals(map1.get("图片类型").toString()) ? "url" : "path", (String) map1.get("图片路径"));
+                ElementButton button = new ElementButton(map1.get("name") + s);
+                ElementButtonImageData imageData = new ElementButtonImageData("Web".equals(map1.get("image-type").toString()) ? "url" : "path", (String) map1.get("image-path"));
                 button.addImage(imageData);
                 simple.addButton(button);
                 c.put(b, i);
@@ -135,7 +135,7 @@ public class CreateMenu {
                                 break;
                             }
                         }
-                        s = RsTask.getTask().getLag("not-invite", "§c[不可领取]");
+                        s = RsTask.getTask().getLag("not-invite", "§c[unclaimable]");
                         break;
                     case Success:
                         s = (RsTask.getTask().getLag("success"));
@@ -181,13 +181,13 @@ public class CreateMenu {
             TaskFile file = RsTask.getTask().getClickTask.get(player);
             if (file != null) {
                 FormWindowModal simple = new FormWindowModal(task.getLag("title"),
-                        RsTask.getTask().getLag("giveUpChose", "§d§l您确定要放弃了 %s 任务吗?{换行}§c放弃后会丢失当前进度")
-                                .replace("%s", file.getName()).replace("{换行}", "\n"), "确定", "取消");
+                        RsTask.getTask().getLag("giveUpChose", "§d§Are you sure you want to give up? %s Tasks? {line breaks}§c loses current progress when abandoned")
+                                .replace("%s", file.getName()).replace("{换行}", "\n"), "recognize", "cancel");
 
                 send(player, simple, AGAIN);
             }
         } else {
-            player.sendMessage("§c请再尝试一次");
+            player.sendMessage("§c Please try again");
         }
     }
 
@@ -361,13 +361,13 @@ public class CreateMenu {
         for (TaskFile.TaskType type : TaskFile.TaskType.values()) {
             list.add(type.getTaskType());
         }
-        custom.addElement(new ElementDropdown("Please select the task type", list, 3)); //2
+        custom.addElement(new ElementDropdown("Please select the task type", list, 3)); // 2
         LinkedList<String> list1 = new LinkedList<>();
-        Map map = ((Map) task.getConfig().get("Custom Image Path"));
+        Map map = ((Map) task.getConfig().get("custom-image-path"));
         Map map1;
         for (int i = 0; i < map.size(); i++) {
             map1 = (Map) map.get(i + "");
-            list1.add(map1.get("Name").toString());
+            list1.add(map1.get("name").toString());
         }
         custom.addElement(new ElementDropdown("Please select the task group", list1)); //3
         custom.addElement(new ElementInput("Please enter the task difficulty (integer)", "For example: 1", "1")); //4

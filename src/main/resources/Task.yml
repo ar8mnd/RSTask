@@ -7,42 +7,42 @@
 #
 # @author 若水
 # This is the content displayed to the player
-Task Display Name: This is a task
+task-display-name: This is a task
 
 # This represents the number of *
-Task Difficulty: 1
+task-difficulty: 1
 
 # Corresponds to the group in the config file
-Task Group: 0
+task-group: 0
 
 # Introduction to the task
-Task Description: "None"
+task-description: "None"
 
 # The task refreshes periodically, allowing players to reaccept it
-Refresh Time (minutes): 0
+refresh-time: 0
 
 # The duration of the task, after a certain time from acceptance, it will be automatically deleted
-Duration (minutes): -1
+duration-time: -1
 
 # Limits the number of times a player can complete the task
-Completion Limit: 1
+completion-limit: 1
 
 # Types of tasks
 # Break Block, Place Block, Drop Item, Collect Item
 # Craft Item, Obtain Item, Eat Item, Fetch Water/Lava, Click Block, Custom
 
-Task Type: ~
+task-type: ~
 
 # Tasks that need to be completed before this task can be accepted. Fill in the task name
-Prerequisite Tasks: null
+need-to-complete-this-task-before: null
 
 # After completing the following tasks, players cannot accept this task
 # List the task names here ["Task1", "Task2"]
-Cannot Accept After Completing: []
+cannot-accept-this-task-after-completing: []
 
 # After accepting the following tasks, players cannot accept this task
 # List the task names here ["Task1", "Task2"]
-cannot-accept-after-accepting: []
+cannot-accept-this-task-after-receiving: []
 
 # What the player needs to do
 # Custom: Custom Name: Quantity
@@ -64,7 +64,7 @@ rewards: []
 
 # 0 to send to the player personally, 1 for server-wide announcement
 completion-announcement-type: 1
-Announcement Content: "§l§c[§bTask System§c]§eCongratulations §a%p §eon completing the§d[ %s ]§e task"
+announcement-content: "§l§c[§bTask System§c]§eCongratulations §a%p §eon completing the§d[ %s ]§e task"
 
 custom-button-image:
  Location: "Local"

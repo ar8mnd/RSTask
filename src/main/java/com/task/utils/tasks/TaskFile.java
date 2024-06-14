@@ -266,7 +266,7 @@ public class TaskFile {
         config.set("refresh-time", day);
         config.set("duration-time", loadDay);
         config.set("task-type", type.getTaskType());
-        config.set("completion-count-limit", successCount);
+        config.set("completion-limit", successCount);
         if (task != null && !"null".equals(task)) {
             config.set("need-to-complete-this-task-before", task);
         }
@@ -274,13 +274,13 @@ public class TaskFile {
         config.set("cannot-accept-this-task-after-receiving", notToInviteTasks);
         config.set("task-content", taskitems);
         if (firstSuccessItem != null) {
-            config.set("first-completion-reward", firstSuccessItem.toSaveConfig());
+            config.set("first-completion-rewards", firstSuccessItem.toSaveConfig());
         } else {
-            config.set("first-completion-reward", successItem.toSaveConfig());
+            config.set("first-completion-rewards", successItem.toSaveConfig());
         }
-        config.set("reward", successItem.toSaveConfig());
-        config.set("completion-notification-type", messageType);
-        config.set("notification-content", broadcastMessage);
+        config.set("rewards", successItem.toSaveConfig());
+        config.set("completion-announcement-type", messageType);
+        config.set("announcement-content", broadcastMessage);
         config.set("custom-button-image", button.toSaveConfig());
 
         config.save();
@@ -423,7 +423,7 @@ public class TaskFile {
             if (isFileTask(taskName)) {
                 Config config = RsTask.getTask().getTaskConfig(taskName);
                 String sType = config.getString("task-type");
-                int succount = config.getInt("completion-count-limit", 1);
+                int succount = config.getInt("completion-limit", 1);
                 TaskType type = null;
                 for (TaskType taskType : TaskType.values()) {
                     if (taskType.getTaskType().equals(sType)) {
@@ -447,9 +447,9 @@ public class TaskFile {
                 } else {
                     return null;
                 }
-                Map firstSuccess = (Map) config.get("first-completion-reward");
+                Map firstSuccess = (Map) config.get("first-completion-rewards");
                 SuccessItem first = SuccessItem.toSuccessItem(firstSuccess);
-                Map success = (Map) config.get("reward");
+                Map success = (Map) config.get("rewards");
                 SuccessItem second = SuccessItem.toSuccessItem(success);
                 if (type == null) {
                     return null;
@@ -460,13 +460,12 @@ public class TaskFile {
                         taskItems,
                         config.getString("task-introduction"),
                         config.getInt("task-difficulty"),
-                        config.getInt("task-group",
-                                config.getInt("task-difficulty") - 1),
+                        config.getInt("task-group",  config.getInt("task-difficulty") - 1),
                         second,
                         first,
                         config.getString("need-to-complete-this-task-before"),
                         config.getInt("refresh-time", 0),
-                        config.getInt("completion-notification-type"), config.getString("公告内容"),
+                        config.getInt("completion-notification-type"), config.getString("announcement-content"),
                         TaskButton.toTaskButton((Map) config.get("custom-button-image"))
                 );
                 file.setShowName(config.getString("task-display-name"));

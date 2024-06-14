@@ -356,7 +356,7 @@ public class ListerEvents implements Listener {
                     if (canAdd) {
                         if (!file.addTaskValue(task.getTaskName(), item, add)) {
                             if (echo) {
-                                Server.getInstance().getLogger().warning(player + "完成" + task.getTaskName() + "任务中支线" + item + "出现异常");
+                                Server.getInstance().getLogger().warning(player + "fulfillment" + task.getTaskName() + "In-mission spinoffs" + item + "abnormalities");
                                 return;
                             }
                         } else {

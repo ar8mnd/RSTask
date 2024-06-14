@@ -167,8 +167,13 @@ public class SuccessItem {
             case "item":
                 String sItem = value.split("@")[0];
                 String[] lists = sItem.split(":");
-                addItemClass(new ItemClass(lists[0],
-                        Integer.parseInt(lists[1]), Integer.parseInt(lists[2])));
+                if (lists[0].equals("minecraft")) {
+                    addItemClass(new ItemClass(lists[1],
+                            Integer.parseInt(lists[2]), Integer.parseInt(lists[3])));
+                } else {
+                    addItemClass(new ItemClass(lists[0],
+                            Integer.parseInt(lists[1]), Integer.parseInt(lists[2])));
+                }
                 break;
             case "tag":
                 sItem = value.split("@")[0];
