@@ -45,7 +45,7 @@ public class AutoSaveFileTask implements Runnable {
                         if (file.toSave()) {
                             saveCount++;
                         } else {
-                            getOwner().getLogger().log(LogLevel.ERROR, "玩家 " + file.getPlayerName() + " 任务文件保存失败!");
+                            getOwner().getLogger().log(LogLevel.ERROR, "player " + file.getPlayerName() + " Task File Save Failure!");
                             errorCount++;
                         }
                     }

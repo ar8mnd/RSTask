@@ -304,7 +304,7 @@ public class CreateMenu {
                 builder.append(s);
             }
         } else {
-            builder.append(RsTask.getTask().getLag("notTasks")).append("§r\n");
+            builder.append(RsTask.getTask().getLag("not-tasks")).append("§r\n");
         }
 
         builder.append("\n\n");
@@ -324,7 +324,7 @@ public class CreateMenu {
                 builder.append(builder1).append("\n");
             }
         } else {
-            builder.append(RsTask.getTask().getLag("nothave-SuccessItem"));
+            builder.append(RsTask.getTask().getLag("nothave-success-item"));
         }
         builder.append("\n");
         simple.setContent(builder.toString());
@@ -372,12 +372,10 @@ public class CreateMenu {
         custom.addElement(new ElementDropdown("Please select the task group", list1)); //3
         custom.addElement(new ElementInput("Please enter the task difficulty (integer)", "For example: 1", "1")); //4
         custom.addElement(new ElementInput("Please enter the task description", "For example: Collect 10 Oak Wood", "Collect 10 Oak Wood")); //5
-        custom.addElement(new ElementInput("Please enter the task completion conditions (& separates multiple elements) @item for items (17:0:10@item) @lib for item dictionary (wood:10@lib) @tag for NBT items (id:10@tag) (For custom tasks, please enter content: quantity)", "For example: 17:0:10@item or id:10@tag (collection task)", "17:0:10@item")); //6
-        custom.addElement(new ElementInput("Please enter the task rewards (& separates multiple elements) @item for reward items @tag for reward items in TagItem.json @lib for reward items in the item dictionary (only the first one) @money for reward money @Cmd for reward commands (%p represents player)", "For example: 366:0:1@item or id:1@tag", "366:0:1@item&100@money")); //7
+        custom.addElement(new ElementInput("Please enter the task completion conditions (& separates multiple elements) @item for items (oak_log:0:10@item) @lib for item dictionary (wood:10@lib) @tag for NBT items (id:10@tag) (For custom tasks, please enter content: quantity)", "For example: oak_log:0:10@item or id:10@tag (collection task)", "17:0:10@item")); //6
+        custom.addElement(new ElementInput("Please enter the task rewards (& separates multiple elements) @item for reward items @tag for reward items in TagItem.json @lib for reward items in the item dictionary (only the first one) @money for reward money @Cmd for reward commands (%p represents player)", "For example: netherite_sword:0:1@item or id:1@tag", "netherite_sword:0:1@item&100@money")); //7
         send(player, custom, CREATE);
-
     }
-
 
     private static void send(Player player, FormWindow window, int id) {
         player.showFormWindow(window, id);

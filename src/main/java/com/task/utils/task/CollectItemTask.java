@@ -56,13 +56,10 @@ public class CollectItemTask implements Runnable {
                         item.setEndCount(DataTool.getCount(player, itemClass));
                     }
                     file.setTaskValue(taskName, item);
-
                 }
-
             }
         }
     }
-
 
     @Override
     public void run() {

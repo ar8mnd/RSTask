@@ -31,7 +31,7 @@ public class ChunkPlayerInventoryBookTask implements Runnable {
     @Override
     public void run() {
         while (true) {
-            //遍历检测玩家背包
+            // 遍历检测玩家背包
             for (Player player : Server.getInstance().getOnlinePlayers().values()) {
                 for (Item item : player.getInventory().getContents().values()) {
                     if (item instanceof ItemWrittenBook) {

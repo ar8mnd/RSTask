@@ -118,7 +118,9 @@ public class PlayerTaskClass {
 
     public boolean issetTaskItem(String item) {
         for (TaskItem item1 : value) {
-            if (item1.getTask().equals(item)) {
+            String taskItem = "minecraft:" + item1.getTask();
+
+            if (taskItem.equals(item)) {
                 return true;
             }
         }

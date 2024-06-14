@@ -115,7 +115,7 @@ public class TaskFile {
         /**
          * 破坏任务
          */
-        BlockBreak("devastation"), // 破坏
+        BlockBreak("break"), // 破坏
         /**
          * 放置任务
          */
@@ -123,25 +123,25 @@ public class TaskFile {
         /**
          * 丢弃任务
          */
-        DropItem("discards"), // 丢弃
+        DropItem("drop"), // 丢弃
         /**
          * 收集任务
          */
-        CollectItem("collects"), // 收集
+        CollectItem("collect"), // 收集
         /**
          * 合成任务
          */
-        CraftItem("synthesize"), // 合成
+        CraftItem("craft"), // 合成
         /**
          * 获得 任务
          */
-        GetItem("attainment"), // 获得
+        GetItem("get"), // 获得
 
-        EatItem("stammer"), // 吃
+        EatItem("eat"), // 吃
 
-        GetWater("splashWater"), // 打水
+        GetWater("water"), // 打水
 
-        Click("strike"), // 点击
+        Click("click"), // 点击
 
         DIY("customizable"); // 自定义
 
@@ -158,7 +158,7 @@ public class TaskFile {
     }
 
     public TaskFile(String taskName, TaskType type, TaskItem[] taskItem) {
-        this(taskName, type, taskItem, "无");
+        this(taskName, type, taskItem, "not have");
     }
 
     public TaskFile(String taskName, TaskType type, TaskItem[] taskItem, String taskMessage) {
@@ -257,7 +257,7 @@ public class TaskFile {
         }
         Config config = RsTask.getTask().getTaskConfig(taskName);
         if (showName == null) {
-            showName = config.getString("任务显示名称", "It's a mission.");
+            showName = config.getString("task-display-name", "It's a mission.");
         }
         config.set("task-display-name", showName);
         config.set("task-difficulty", star);

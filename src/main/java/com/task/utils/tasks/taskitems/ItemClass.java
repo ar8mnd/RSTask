@@ -99,11 +99,19 @@ public class ItemClass implements InstanceItem {
                     String ts = defaultString.split("@")[0];
                     String[] items = ts.split(":");
                     try {
-                        return new ItemClass(
-                                items[0],
-                                Integer.parseInt(items[1]),
-                                Integer.parseInt(items[2])
-                        );
+                        if (items[0].equals("minecraft")) {
+                            return new ItemClass(
+                                    items[1],
+                                    Integer.parseInt(items[2]),
+                                    Integer.parseInt(items[3])
+                            );
+                        } else {
+                            return new ItemClass(
+                                    items[0],
+                                    Integer.parseInt(items[1]),
+                                    Integer.parseInt(items[2])
+                            );
+                        }
                     } catch (Exception e) {
                         return null;
                     }

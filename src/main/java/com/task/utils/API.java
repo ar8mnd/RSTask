@@ -109,10 +109,9 @@ public class API {
         if (item != null) {
             ItemClass itemClass = new ItemClass(item);
             if (!RsTask.getTask().canExisteItemClass(itemClass)) {
-                ListerEvents.defaultUseTask(player.getName(), itemClass.toTaskItem(false), type, false);
+                ListerEvents.defaultUseTask(player.getName(), itemClass.toTaskItem(false), type, true);
             } else {
-                ListerEvents.defaultUseTask(player.getName(), itemClass.toTaskItem(true), type, false);
-
+                ListerEvents.defaultUseTask(player.getName(), itemClass.toTaskItem(true), type, true);
             }
         }
     }

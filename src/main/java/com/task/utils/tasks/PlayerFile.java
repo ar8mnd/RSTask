@@ -219,12 +219,15 @@ public class PlayerFile {
      */
     public boolean addTaskValue(String taskName, String valueName, int value) {
         PlayerTask task = getTaskByName(taskName);
+
         if (task != null) {
             TaskItem[] taskItems = task.getTaskClass().getValue();
             int i = 0;
             for (TaskItem item : taskItems) {
                 if (item != null) {
-                    if (item.getTask().equals(valueName)) {
+                    String itemName = "minecraft:" + item.getTask();
+
+                    if (itemName.equals(valueName)) {
                         i++;
                         item.addEndCount(value);
                         Boolean event = getBoolean(taskName, task, item);
@@ -236,7 +239,6 @@ public class PlayerFile {
                 }
             }
             return i > 0;
-
         }
         return false;
     }
@@ -354,6 +356,7 @@ public class PlayerFile {
                 return task;
             }
             if (task.getTaskFile().getShowName().equalsIgnoreCase(taskName)) {
+                System.out.println("!!");
                 return task;
             }
         }
@@ -790,8 +793,6 @@ public class PlayerFile {
         PlayerTaskClass playerTaskClass = task.getTaskClass();
         playerTaskClass.setLoad(item);
         task.setTaskClass(playerTaskClass);
-
-//
     }
 
     /**

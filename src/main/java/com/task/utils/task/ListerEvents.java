@@ -54,7 +54,8 @@ public class ListerEvents implements Listener {
             return;
         }
         Block block = event.getBlock();
-        String s = block.getId() + ":" + block.toItem().getDamage() + "@item";
+//        String s = block.getId() + ":" + block.toItem().getDamage() + "@item"; // minecraft:oak_log:1:@item
+        String s = block.getId() + "@item";
         defaultUseTask(player.getName(), s, TaskFile.TaskType.BlockPlayer, false);
     }
 
@@ -141,6 +142,7 @@ public class ListerEvents implements Listener {
                 String send = RsTask.getTask().getLag("run-task").
                         replace("%s", task.getTaskFile().getName()).replace("%c", String.format("%.2f", RsTask.getTask().
                                 getTaskLoading(task.getTaskName(), player.getName()))).replace("\\n", "\n");
+                DataTool.sendMessage(player, send);
                 DataTool.sendMessage(player, send);
             } else {
                 if (!RsTask.taskNames.contains(task.getTaskName())) {
@@ -356,7 +358,7 @@ public class ListerEvents implements Listener {
                     if (canAdd) {
                         if (!file.addTaskValue(task.getTaskName(), item, add)) {
                             if (echo) {
-                                Server.getInstance().getLogger().warning(player + "fulfillment" + task.getTaskName() + "In-mission spinoffs" + item + "abnormalities");
+                                Server.getInstance().getLogger().warning(player + " fulfillment " + task.getTaskName() + " In-mission spinoffs " + item + " abnormalities");
                                 return;
                             }
                         } else {
